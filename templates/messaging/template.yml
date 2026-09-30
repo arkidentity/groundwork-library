@@ -1,0 +1,35 @@
+name: messaging
+version: 0.1.1
+title: Messaging brand brief
+description: >
+  Brand brief and voice capture without drafting: who the customer is, their problem, what you
+  do, proof and story, and the client's real words. Fills messaging/ and the brand brief.
+vars:
+  client: the client's name as they say it (e.g. "Hope")
+  customer: what the client calls the person they serve (homeowner, parent, visitor, neighbor)
+  from: who on the team is asking
+  date: today
+project:
+  slug: messaging
+  title: Your message
+  summary: Who you serve, and how to say it in your own words.
+  audience: all          # use `team` until it's offered to the client
+pairs_with:
+  - template: church-website
+    note: >
+      The website project's Wave 1 request ("Send us what you have") already covers x-001 here, so skip
+      x-001. q-004 (what you do) is covered by the website's visit walk-through for a church; skip or
+      reword. Sections 1.x of the website bank are answered by q-002, q-003, q-005 and q-006 once this
+      project runs.
+items:
+  x-001:
+    skip_if: a request titled "Send us what you have" already exists in another project
+team_files:
+  - from: kickoff-call-guide.md
+    to: messaging/kickoff-call-guide.md
+    tailor: fill "The 3 gaps" and "The hard stuff" for this client
+  - from: audit-rubric.md
+    to: messaging/audit-rubric.md
+    tailor: reference only; the audit itself goes in messaging/language-audit.md
+generate:
+  - messaging/language-audit.md: start from whatever copy exists now (team version)

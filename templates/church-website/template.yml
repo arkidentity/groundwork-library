@@ -1,0 +1,40 @@
+name: church-website
+version: 0.1.1
+title: Church website
+description: >
+  Information discovery for a church website: prefill what we can find, confirm it, ask only what is
+  left, in waves. Facts go to content/, voice to messaging/. Conversion strategy and the question
+  bank live in this folder. Design is not in here.
+vars:
+  church: the church's short name as people say it (e.g. "Hope")
+  street: the street the church is on, if known (used in the first-visit question)
+  from: who on the team is asking (usually the person who has the relationship)
+  date: today
+project:
+  slug: website
+  title: Your new website
+  summary: The pages, the facts, and how a first visit works.
+  audience: all
+pairs_with:
+  - template: messaging
+    note: >
+      Messaging is the upsell. Its story questions (who walks in, what they carry, why, their words)
+      answer Section 1 of the question bank. Without it, Section 1 stays light and copy is written
+      from the client's own sentences in calls and answers.
+# Static items copied from this folder. The confirm items (topic `confirm`) are NOT here: the skill
+# generates them from Wave 0 (what it found), one item per small group of facts, with `planned:`.
+items:
+  x-001: the request list for facts and assets (tailor the prompts to what is still missing)
+  q-visit: the first-Sunday walk-through (the highest-value page; ask it for every church)
+generate:
+  - content/_coverage.md: gates, section status, blockers (see the skill)
+  - content/<section>.md: one file per bank section, every fact marked unconfirmed with a source
+  - "topic `confirm` items: Does this look right? (planned + one-tap confirm)"
+team_files:
+  - from: question-bank.yml
+    to: null              # reference; the skill reads it from this folder, never copies it
+  - from: STRATEGY.md
+    to: null
+  - from: sitemap.md
+    to: null
+skill: church-website-discovery

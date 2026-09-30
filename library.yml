@@ -1,0 +1,37 @@
+# Groundwork library index. Bump `version` on every release and tag it (vX.Y.Z).
+name: groundwork-library
+source: arkidentity/groundwork-library   # owner/repo on GitHub; what workspaces put in `libraries:`
+version: 0.4.0
+contract: 3            # the workspace contract these templates and skills were written for
+                       # (docs/REPO-CONTRACT.md in this repo)
+
+templates:
+  - name: church-website
+    path: templates/church-website
+    version: 0.1.1
+    title: Church website
+    description: Information discovery for a church site, in waves, with the conversion strategy and a 118-question bank.
+    tags: [church, website, discovery]
+    pairs_with: [messaging]
+  - name: messaging
+    path: templates/messaging
+    version: 0.1.1
+    title: Messaging brand brief
+    description: Brand brief and voice capture without drafting. The upsell to a website.
+    tags: [messaging, brand-brief, onboarding]
+    pairs_with: [church-website]
+  - name: blank
+    path: templates/blank
+    version: 0.1.0
+    title: Blank project
+    description: An empty project with one conversation, for work that has no template yet.
+    tags: [starter]
+    pairs_with: []
+
+skills:
+  # core: synced into every workspace repo by scripts/sync-skills.mjs
+  - {name: groundwork-inbox, core: true}
+  - {name: groundwork-outbox, core: true}
+  - {name: groundwork-project, core: true}
+  # optional: synced only into repos that already have it (or where you pass --add)
+  - {name: church-website-discovery, core: false}

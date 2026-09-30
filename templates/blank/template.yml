@@ -1,0 +1,16 @@
+name: blank
+version: 0.1.0
+title: Blank project
+description: An empty project with one conversation. Use when no template fits yet.
+vars:
+  project_title: what the client sees, e.g. "Google Ads"
+  project_summary: one line for the Home card
+  from: who on the team is asking
+  date: today
+project:
+  slug: ""            # ask; lowercase, hyphens
+  title: "{{project_title}}"
+  summary: "{{project_summary}}"
+  audience: all
+pairs_with: []
+team_files: []

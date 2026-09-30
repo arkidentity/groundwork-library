@@ -1,0 +1,250 @@
+# Church website discovery: question bank (v0.1, 2026-09-30)
+#
+# pri:  M = blocks the build, S = strongly improves the site, N = optional
+# type: text | longtext | list | select | multi | upload | url | time
+# src:  scrape = try their site/socials/listings first, then confirm  (wave 0 -> 1)
+#       call   = usually answered in a discovery call/transcript, pull it, then confirm
+#       manual = only they know it  (wave 2/3)
+#       ours   = our decision, we propose, they react
+# gate: ask only if this is true (see gates below). No gate = always.
+# also: a Module B (messaging) answer that satisfies this, so nobody answers twice.
+# dest: file in the church repo's content/ or messaging/
+# sens: true = never a written question; call only (see README "Sensitive things")
+# Every answer is stored with status: unconfirmed | confirmed, source, date.
+
+gates:
+  livestream: Do you livestream services?
+  sermons_online: Do you put sermons online?
+  events_tool: Do you keep a public calendar of events?
+  online_giving: Can people give online?
+  kids: Is there a kids or children's ministry?
+  youth: Is there a youth ministry?
+  young_adults: Is there a young adult or college group?
+  groups: Do you have small groups or classes?
+  care: Do you run care, counseling, or recovery support?
+  missions: Do you have missions or outreach partners?
+  serve_teams: Do you have serving teams people can join?
+  other_language: Are any services in another language?
+  second_audience: Is there a second public audience (a school, food pantry, rentals)?
+  multi_campus: More than one location?
+
+sections:
+  - id: 0
+    name: Basics (site-wide)
+    dest: content/basics.md
+    q:
+      - {id: "0.1", q: "Official church name, and any shorter name people actually use", type: text, pri: M, src: scrape}
+      - {id: "0.2", q: "Physical address (and a second if multi-campus)", type: text, pri: M, src: scrape}
+      - {id: "0.3", q: "Main phone number. Can it receive texts?", type: text, pri: M, src: scrape}
+      - {id: "0.4", q: "Main public email address", type: text, pri: M, src: scrape}
+      - {id: "0.5", q: "Office hours", type: text, pri: S, src: scrape}
+      - {id: "0.6", q: "Social links (Facebook, Instagram, YouTube, other)", type: list, pri: S, src: scrape}
+      - {id: "0.7", q: "Denomination or network affiliation", type: text, pri: S, src: scrape}
+      - {id: "0.8", q: "Year founded", type: text, pri: N, src: scrape}
+      - {id: "0.9", q: "How many locations?", type: select, pri: M, src: manual, gate: multi_campus}
+
+  - id: 1
+    name: Identity and audience (drives tone and homepage)
+    dest: messaging/voice.md
+    note: Replaced by Module B when sold. Keep it light otherwise.
+    q:
+      - {id: "1.1", q: "In a sentence or two, what is your church? Say it like you would to a friend.", type: longtext, pri: M, src: call, also: "B q-006"}
+      - {id: "1.2", q: "Who is this site for? Rank visitors, members, families with kids, young adults, seekers, people in crisis.", type: multi, pri: M, src: call}
+      - {id: "1.3", q: "What should a first-time visitor feel when they land?", type: longtext, pri: M, src: call, also: "B q-003"}
+      - {id: "1.4", q: "Three words for your church culture", type: list, pri: M, src: call}
+      - {id: "1.5", q: "Who actually attends? Ages, families, backgrounds, neighborhood.", type: longtext, pri: S, src: call, also: "B q-002"}
+      - {id: "1.6", q: "What makes you different from the church down the road?", type: longtext, pri: S, src: call, also: "B q-006"}
+      - {id: "1.7", q: "The ONE thing you want a visitor to do after seeing the site", type: select, pri: M, src: ours}
+      - {id: "1.8", q: "What do you never want to sound like? Corporate, churchy, trendy, other.", type: longtext, pri: S, src: call, also: "B q-006"}
+      - {id: "1.9", q: "Two or three church sites you love the feel of, and why", type: list, pri: S, src: manual}
+      - {id: "1.10", q: "What is broken or frustrating about the current site?", type: longtext, pri: S, src: manual}
+
+  - id: 2
+    name: Homepage priorities
+    dest: content/homepage.md
+    q:
+      - {id: "2.1", q: "Rank: service times, plan your visit, latest sermon, upcoming events, ministries, give, next steps, news, serve", type: multi, pri: M, src: ours, note: "We propose the order from STRATEGY.md; they react."}
+      - {id: "2.2", q: "Is there a current series, campaign, or event to feature right now?", type: text, pri: S, src: manual}
+      - {id: "2.3", q: "How often will homepage content change, and who updates it?", type: text, pri: S, src: manual}
+      - {id: "2.4", q: "Short welcome statement (2 to 4 sentences)", type: longtext, pri: M, src: scrape, note: "Drafted by us from their words, never invented. Confirm."}
+      - {id: "2.5", q: "Stats, stories, or testimonies to highlight", type: longtext, pri: N, src: manual, also: "B q-005"}
+
+  - id: 3
+    name: Service times and online
+    dest: content/services.md
+    q:
+      - {id: "3.1", q: "Every service: day, time, location, name", type: list, pri: M, src: scrape}
+      - {id: "3.2", q: "Do services differ in style? Traditional, contemporary, other.", type: list, pri: S, src: call}
+      - {id: "3.3", q: "Livestream platform and link", type: url, pri: M, src: scrape, gate: livestream}
+      - {id: "3.4", q: "Holiday or seasonal schedule changes coming up", type: list, pri: S, src: manual}
+      - {id: "3.5", q: "Services in other languages", type: list, pri: S, src: manual, gate: other_language}
+
+  - id: 4
+    name: Plan your visit (highest value page)
+    dest: content/plan-your-visit.md
+    q:
+      - {id: "4.1", q: "Walk us through it from the moment someone pulls into the lot.", type: longtext, pri: M, src: manual, also: "B q-004"}
+      - {id: "4.2", q: "Where do they park and where is the main entrance?", type: text, pri: M, src: manual}
+      - {id: "4.3", q: "How long is a typical service?", type: text, pri: M, src: manual}
+      - {id: "4.4", q: "What is the music like?", type: text, pri: S, src: call}
+      - {id: "4.5", q: "What should they wear?", type: text, pri: S, src: manual}
+      - {id: "4.6", q: "What is the sermon like? Length, style, topics.", type: text, pri: S, src: manual}
+      - {id: "4.7", q: "What do new families need to know about kids and check-in?", type: longtext, pri: M, src: manual, gate: kids}
+      - {id: "4.8", q: "Accessibility: wheelchair access, hearing assistance, nursing room, sensory-friendly", type: list, pri: S, src: manual}
+      - {id: "4.9", q: "Will someone greet them? Welcome desk, guest gift?", type: text, pri: S, src: manual}
+      - {id: "4.10", q: "The top 5 questions first-timers ask you", type: list, pri: M, src: manual, also: "B q-003"}
+      - {id: "4.11", q: "Do you want a \"tell us you're coming\" form? Who receives it? Or text/call?", type: text, pri: S, src: ours}
+      - {id: "4.12", q: "A real person a visitor can connect with (name, role, photo)", type: text, pri: S, src: manual}
+      - {id: "4.13", q: "What's confusing to someone who's never been to this kind of church? (liturgy, communion, when to stand)", type: longtext, pri: S, src: manual, also: "B q-004"}
+
+  - id: 5
+    name: About (beliefs, mission, history)
+    dest: content/about.md
+    q:
+      - {id: "5.1", q: "Mission statement", type: text, pri: M, src: scrape}
+      - {id: "5.2", q: "Vision statement", type: text, pri: S, src: scrape}
+      - {id: "5.3", q: "Core values (3 to 6, one sentence each)", type: list, pri: S, src: call}
+      - {id: "5.4", q: "Statement of faith, paste existing or summarize", type: longtext, pri: M, src: scrape}
+      - {id: "5.5", q: "Want a plain-language version of beliefs for newcomers?", type: select, pri: S, src: ours, note: "Default yes. Church owner writes or approves it."}
+      - {id: "5.6", q: "Church history in a short paragraph", type: longtext, pri: N, src: scrape}
+      - {id: "5.7", q: "Denominational statements or required legal language", type: longtext, pri: S, src: manual}
+      - {id: "5.8", q: "Positions on sensitive topics to state clearly, or deliberately not state", type: longtext, pri: S, src: manual, sens: true}
+
+  - id: 6
+    name: Leadership and staff
+    dest: content/staff.md
+    q:
+      - {id: "6.1", q: "For each leader: name, title, photo, short bio, email", type: list, pri: M, src: scrape}
+      - {id: "6.2", q: "Who is the lead pastor, and what is the 2 to 3 sentence story a visitor should hear?", type: longtext, pri: M, src: call, also: "B q-005"}
+      - {id: "6.3", q: "Elders, deacons, or board: show names?", type: select, pri: S, src: manual}
+      - {id: "6.4", q: "Which staff get a public email address?", type: multi, pri: S, src: manual}
+
+  - id: 7
+    name: Next steps and growth path
+    dest: content/next-steps.md
+    q:
+      - {id: "7.1", q: "The path you want someone to follow: visit, connect, group, serve, membership, baptism", type: list, pri: M, src: call}
+      - {id: "7.2", q: "Resources for someone new to faith", type: longtext, pri: S, src: manual}
+      - {id: "7.3", q: "Membership: class, process, requirements?", type: longtext, pri: S, src: call}
+      - {id: "7.4", q: "Baptism: how does someone sign up?", type: text, pri: S, src: manual}
+      - {id: "7.5", q: "Newcomer class or lunch: details and dates", type: text, pri: S, src: manual}
+
+  - id: 8
+    name: Ministries (one template per ministry)
+    dest: content/ministries/<slug>.md
+    note: "First list every ministry, then mark each featured / standard / hidden. Only ask detail for ones that exist."
+    q:
+      - {id: "8.0", q: "List every ministry, program and regular gathering that exists today. Then list what's planned.", type: list, pri: M, src: call}
+      - {id: "8.1", q: "Name", type: text, pri: M, src: call, per: ministry}
+      - {id: "8.2", q: "Who is it for?", type: text, pri: M, src: call, per: ministry}
+      - {id: "8.3", q: "What is it, in 2 to 3 sentences?", type: longtext, pri: M, src: call, per: ministry}
+      - {id: "8.4", q: "When and where does it meet?", type: text, pri: M, src: call, per: ministry}
+      - {id: "8.5", q: "What does a first visit look like?", type: longtext, pri: S, src: manual, per: ministry}
+      - {id: "8.6", q: "Leader name, role, contact", type: text, pri: M, src: manual, per: ministry}
+      - {id: "8.7", q: "How does someone sign up or get involved?", type: text, pri: M, src: manual, per: ministry}
+      - {id: "8.8", q: "Photos or video", type: upload, pri: S, src: manual, per: ministry}
+      - {id: "8.9", q: "Cost or registration required?", type: text, pri: S, src: manual, per: ministry}
+    extras:
+      kids: [age ranges, check-in process, safety and background-check policy, curriculum, nursery]
+      youth: [grades, times, events, parent communication, safety policy]
+      young_adults: [age range, times, where they meet]
+      groups: [how they work, how to join, sign-up link, semester or ongoing]
+      care: [prayer, counseling, grief, recovery, benevolence, hospital visits]
+      missions: [local partners, global partners, how to participate]
+      creative_arts: [how to audition or join, events, who is invited]
+      second_audience: [who it serves, who runs it, separate brand?, where it links]
+
+  - id: 9
+    name: Sermons and media
+    dest: content/media.md
+    gate: sermons_online
+    q:
+      - {id: "9.1", q: "Where do sermons live? YouTube, Vimeo, Subsplash, podcast, other.", type: multi, pri: M, src: scrape}
+      - {id: "9.2", q: "Host sermons on the site or link out?", type: select, pri: M, src: ours}
+      - {id: "9.3", q: "Current series name, description, art", type: text, pri: S, src: scrape}
+      - {id: "9.4", q: "Podcast links (Apple, Spotify)", type: url, pri: S, src: scrape}
+      - {id: "9.5", q: "Who uploads, and how soon after Sunday?", type: text, pri: S, src: manual}
+      - {id: "9.6", q: "Other media: worship music, devotionals, blog", type: list, pri: N, src: scrape}
+
+  - id: 10
+    name: Events
+    dest: content/events.md
+    gate: events_tool
+    q:
+      - {id: "10.1", q: "Where are events managed today? Planning Center, Google Calendar, other.", type: select, pri: M, src: manual}
+      - {id: "10.2", q: "Regular weekly or monthly events", type: list, pri: M, src: scrape}
+      - {id: "10.3", q: "Big annual events", type: list, pri: S, src: scrape}
+      - {id: "10.4", q: "Who registers people, and how?", type: text, pri: S, src: manual}
+      - {id: "10.5", q: "Do you need sign-up forms on the site?", type: select, pri: S, src: manual}
+      - {id: "10.6", q: "Who keeps the calendar current? If no one, we leave the page out.", type: text, pri: M, src: manual}
+
+  - id: 11
+    name: Serve
+    dest: content/serve.md
+    gate: serve_teams
+    q:
+      - {id: "11.1", q: "Every serving team with a one-line description", type: list, pri: M, src: scrape}
+      - {id: "11.2", q: "How does someone start serving?", type: text, pri: M, src: manual}
+      - {id: "11.3", q: "Requirements? Membership, background check, training.", type: text, pri: S, src: manual}
+      - {id: "11.4", q: "Point of contact", type: text, pri: S, src: manual}
+      - {id: "11.5", q: "Community serve days or outreach events", type: list, pri: N, src: manual}
+
+  - id: 12
+    name: Give
+    dest: content/give.md
+    q:
+      - {id: "12.1", q: "Giving platform and link", type: url, pri: M, src: scrape, gate: online_giving}
+      - {id: "12.2", q: "Other ways to give: text, mail, in person, stock, DAF", type: list, pri: S, src: manual}
+      - {id: "12.3", q: "In your own words, why does your church invite people to give?", type: longtext, pri: S, src: manual}
+      - {id: "12.4", q: "Any active building, missions, or special funds?", type: list, pri: S, src: manual}
+      - {id: "12.5", q: "Do you want to share financial transparency info?", type: select, pri: N, src: manual, sens: true}
+      - {id: "12.6", q: "Mailing address for checks", type: text, pri: S, src: manual}
+
+  - id: 13
+    name: Contact, prayer and care
+    dest: content/contact.md
+    q:
+      - {id: "13.1", q: "Who receives contact messages, and how do people prefer to reach you: call, text, email, form?", type: text, pri: M, src: manual}
+      - {id: "13.2", q: "Prayer requests: who receives them, public or private?", type: text, pri: M, src: manual}
+      - {id: "13.3", q: "Do you want an \"I need help\" path? Who handles it?", type: text, pri: S, src: manual, gate: care}
+      - {id: "13.4", q: "How fast do you promise to respond?", type: text, pri: S, src: manual}
+      - {id: "13.5", q: "Directions notes beyond the address", type: longtext, pri: N, src: manual}
+
+  - id: 14
+    name: Brand and assets
+    dest: content/assets.md
+    q:
+      - {id: "14.1", q: "Logo files (vector preferred)", type: upload, pri: M, src: manual}
+      - {id: "14.2", q: "Brand colors and fonts, if any", type: text, pri: S, src: scrape}
+      - {id: "14.3", q: "Photos: building, services, worship, community. Real, recent, not stock. We plan a shoot if they don't exist.", type: upload, pri: M, src: manual}
+      - {id: "14.4", q: "Anyone who cannot be photographed?", type: text, pri: S, src: manual}
+      - {id: "14.5", q: "Videos: welcome video, promo, testimonies", type: upload, pri: S, src: manual}
+      - {id: "14.6", q: "Brand guide or style document", type: upload, pri: N, src: manual}
+      - {id: "14.7", q: "Style references (Instagram, art accounts) and who owns the art", type: list, pri: S, src: manual}
+
+  - id: 15
+    name: Tools, integrations and launch list
+    dest: content/launch.md
+    q:
+      - {id: "15.1", q: "Church management system", type: select, pri: M, src: manual}
+      - {id: "15.2", q: "Email platform", type: select, pri: S, src: manual}
+      - {id: "15.3", q: "Domain name, registrar, and who holds the login", type: text, pri: M, src: manual}
+      - {id: "15.4", q: "Who updates the site after launch?", type: text, pri: M, src: manual}
+      - {id: "15.5", q: "Privacy, child-protection, or terms policies", type: upload, pri: S, src: manual}
+      - {id: "15.6", q: "Required legal or denominational footer language", type: text, pri: S, src: manual}
+      - {id: "15.7", q: "Current URLs that must keep working (redirects)", type: list, pri: S, src: scrape}
+      - {id: "15.8", q: "Google Business Profile: who owns it, is it claimed, are hours, photos and link right?", type: text, pri: M, src: scrape}
+      - {id: "15.9", q: "Who gets analytics access and the monthly report?", type: text, pri: S, src: ours}
+      - {id: "15.10", q: "Business email on the new domain: who needs an address?", type: list, pri: S, src: manual}
+
+  - id: 16
+    name: Approvals and timeline
+    dest: content/launch.md
+    q:
+      - {id: "16.1", q: "The single decision maker for content approval", type: text, pri: M, src: manual}
+      - {id: "16.2", q: "Who else reviews before launch?", type: list, pri: S, src: manual}
+      - {id: "16.3", q: "Target launch date. Any hard deadline (Easter, Christmas, a new series)?", type: text, pri: S, src: manual}
+      - {id: "16.4", q: "Anything coming that could delay us? Staff changes, building project, rebrand.", type: longtext, pri: S, src: manual, sens: true}
+
+# Minimum viable content: the blockers needed to start a build (every pri: M, gates permitting).
+# The skill computes it: all pri M questions in sections whose gate is on.
