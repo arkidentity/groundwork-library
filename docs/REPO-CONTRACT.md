@@ -139,6 +139,8 @@ Body: context in plain language. What we know, what we need, why it matters.
 | `priority_prompts` | no | e.g. `[2, 4]`: 1-based prompts the team starred. Shown with a "Priority" tag; order and numbering don't change (answers record prompts by number). Toggled with the ☆ beside each prompt. |
 | `links` | for `review`/`link` | list of `{ title, url }`, shown as page cards. `link: <url>` still works for one. |
 | `prompts` | no | several questions answered in one go. Shown as a numbered checklist pinned above the Talk button; the client ticks each as they cover it. Best on a `review`: the page plus the open questions it raises. Keep to 2–5. |
+| `sitemap` | no | a page list for the client to shape. Each entry is `{ page, job, fixed }` (or just a page name); `fixed: true` can't be cut (Home). The client marks each page Keep / Not sure / Cut, reorders, adds their own and stars up to 3. See *Page lists* below. |
+| `round` | no | a whole number, `1` and up. Asks in small rounds: within a project, a client sees only the lowest round that still has an open item (plus anything already answered). Answering the last open item opens the next round automatically. Keep rounds to 3 items or fewer, easiest first. Items without a round always show; team-only items don't count toward a round. See *Rounds* below. |
 | `planned` | no | what we intend to do. The client confirms with one tap (saved as an inbox file with `confirmed: true`) or says what's different. The best fit for clients who prefer intentions over approval questions. |
 
 The filename must start with the `id`. The slug is for humans only.
@@ -229,6 +231,42 @@ The team's ☆ in the app writes `priority: now` into the file's frontmatter; ta
 - **Items:** see `priority` above. Starred items win Next up.
 - **Prompts:** see `priority_prompts` above.
 - **Library docs:** starred docs are listed first under "Starred." A doc without frontmatter gets a small `---` block added. Otherwise the welcome doc comes first, then the rest by title.
+
+## Page lists: `sitemap:`
+
+```yaml
+sitemap:
+  - page: Home
+    job: Helps a visitor decide to come on Sunday.
+    fixed: true
+  - page: Plan Your Visit
+    job: What a first Sunday is like.
+```
+
+The answer lands in the inbox like any other, with the readable list as its text ("Keep, in this
+order: 1. Home ★ …", then "Not sure" and "Cut") and the structure in its frontmatter:
+
+```yaml
+sitemap:
+  - { page: Home, choice: keep, top: true, added: false }   # choice: keep | unsure | cut
+```
+
+Sending again is allowed; the newest answer counts, and the editor reopens with it. Up to 40 pages,
+names up to 60 characters. Kept pages drive what we ask next (one small conversation per page).
+
+## Rounds: `round: N`
+
+For asking a little at a time, so a client can finish something and feel done.
+
+- **Per project.** Each project's rounds count on their own; conversations in the same project share them.
+- **One round open at a time.** The open round is the lowest one with an open client item. Later
+  rounds are hidden from clients by the server (like team-only), and the team sees them tagged
+  "Round N · opens later." Next up skips them.
+- **Opens by itself.** When the client answers the last open item in a round, the next one appears,
+  with a "Round N done" note. To hold a round back for review, leave its items `audience: team`
+  and remove the line when ready.
+- **Progress.** With two or more rounds, Home and the project page show one dot per round instead
+  of the item count.
 
 ## Team-only: `audience: team`
 

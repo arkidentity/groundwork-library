@@ -1,4 +1,10 @@
-# Church website discovery: question bank (v0.1, 2026-09-30)
+# Church website discovery: question bank (v0.2, 2026-09-30)
+#
+# Clients never see this file as a list. Questions reach them in rounds of 3 or fewer: the template's
+# fixed rounds, then page-questions.yml for each page they keep. Cut in v0.2 (ask by hand if a church
+# needs one): 0.8 year founded, 1.2 audience ranking, 1.7 the one visitor action (our strategy
+# answers both), 2.5 stats and testimonies (messaging), 5.2 vision, 5.6 history, 9.6 other media,
+# 12.5 financial transparency, 14.6 brand guide, 15.10 business email.
 #
 # pri:  M = blocks the build, S = strongly improves the site, N = optional
 # type: text | longtext | list | select | multi | upload | url | time
@@ -40,7 +46,6 @@ sections:
       - {id: "0.5", q: "Office hours", type: text, pri: S, src: scrape}
       - {id: "0.6", q: "Social links (Facebook, Instagram, YouTube, other)", type: list, pri: S, src: scrape}
       - {id: "0.7", q: "Denomination or network affiliation", type: text, pri: S, src: scrape}
-      - {id: "0.8", q: "Year founded", type: text, pri: N, src: scrape}
       - {id: "0.9", q: "How many locations?", type: select, pri: M, src: manual, gate: multi_campus}
 
   - id: 1
@@ -49,12 +54,10 @@ sections:
     note: Replaced by Module B when sold. Keep it light otherwise.
     q:
       - {id: "1.1", q: "In a sentence or two, what is your church? Say it like you would to a friend.", type: longtext, pri: M, src: call, also: "B q-006"}
-      - {id: "1.2", q: "Who is this site for? Rank visitors, members, families with kids, young adults, seekers, people in crisis.", type: multi, pri: M, src: call}
       - {id: "1.3", q: "What should a first-time visitor feel when they land?", type: longtext, pri: M, src: call, also: "B q-003"}
       - {id: "1.4", q: "Three words for your church culture", type: list, pri: M, src: call}
       - {id: "1.5", q: "Who actually attends? Ages, families, backgrounds, neighborhood.", type: longtext, pri: S, src: call, also: "B q-002"}
       - {id: "1.6", q: "What makes you different from the church down the road?", type: longtext, pri: S, src: call, also: "B q-006"}
-      - {id: "1.7", q: "The ONE thing you want a visitor to do after seeing the site", type: select, pri: M, src: ours}
       - {id: "1.8", q: "What do you never want to sound like? Corporate, churchy, trendy, other.", type: longtext, pri: S, src: call, also: "B q-006"}
       - {id: "1.9", q: "Two or three church sites you love the feel of, and why", type: list, pri: S, src: manual}
       - {id: "1.10", q: "What is broken or frustrating about the current site?", type: longtext, pri: S, src: manual}
@@ -67,7 +70,6 @@ sections:
       - {id: "2.2", q: "Is there a current series, campaign, or event to feature right now?", type: text, pri: S, src: manual}
       - {id: "2.3", q: "How often will homepage content change, and who updates it?", type: text, pri: S, src: manual}
       - {id: "2.4", q: "Short welcome statement (2 to 4 sentences)", type: longtext, pri: M, src: scrape, note: "Drafted by us from their words, never invented. Confirm."}
-      - {id: "2.5", q: "Stats, stories, or testimonies to highlight", type: longtext, pri: N, src: manual, also: "B q-005"}
 
   - id: 3
     name: Service times and online
@@ -102,11 +104,9 @@ sections:
     dest: content/about.md
     q:
       - {id: "5.1", q: "Mission statement", type: text, pri: M, src: scrape}
-      - {id: "5.2", q: "Vision statement", type: text, pri: S, src: scrape}
       - {id: "5.3", q: "Core values (3 to 6, one sentence each)", type: list, pri: S, src: call}
       - {id: "5.4", q: "Statement of faith, paste existing or summarize", type: longtext, pri: M, src: scrape}
       - {id: "5.5", q: "Want a plain-language version of beliefs for newcomers?", type: select, pri: S, src: ours, note: "Default yes. Church owner writes or approves it."}
-      - {id: "5.6", q: "Church history in a short paragraph", type: longtext, pri: N, src: scrape}
       - {id: "5.7", q: "Denominational statements or required legal language", type: longtext, pri: S, src: manual}
       - {id: "5.8", q: "Positions on sensitive topics to state clearly, or deliberately not state", type: longtext, pri: S, src: manual, sens: true}
 
@@ -164,7 +164,6 @@ sections:
       - {id: "9.3", q: "Current series name, description, art", type: text, pri: S, src: scrape}
       - {id: "9.4", q: "Podcast links (Apple, Spotify)", type: url, pri: S, src: scrape}
       - {id: "9.5", q: "Who uploads, and how soon after Sunday?", type: text, pri: S, src: manual}
-      - {id: "9.6", q: "Other media: worship music, devotionals, blog", type: list, pri: N, src: scrape}
 
   - id: 10
     name: Events
@@ -197,7 +196,6 @@ sections:
       - {id: "12.2", q: "Other ways to give: text, mail, in person, stock, DAF", type: list, pri: S, src: manual}
       - {id: "12.3", q: "In your own words, why does your church invite people to give?", type: longtext, pri: S, src: manual}
       - {id: "12.4", q: "Any active building, missions, or special funds?", type: list, pri: S, src: manual}
-      - {id: "12.5", q: "Do you want to share financial transparency info?", type: select, pri: N, src: manual, sens: true}
       - {id: "12.6", q: "Mailing address for checks", type: text, pri: S, src: manual}
 
   - id: 13
@@ -219,7 +217,6 @@ sections:
       - {id: "14.3", q: "Photos: building, services, worship, community. Real, recent, not stock. We plan a shoot if they don't exist.", type: upload, pri: M, src: manual}
       - {id: "14.4", q: "Anyone who cannot be photographed?", type: text, pri: S, src: manual}
       - {id: "14.5", q: "Videos: welcome video, promo, testimonies", type: upload, pri: S, src: manual}
-      - {id: "14.6", q: "Brand guide or style document", type: upload, pri: N, src: manual}
       - {id: "14.7", q: "Style references (Instagram, art accounts) and who owns the art", type: list, pri: S, src: manual}
 
   - id: 15
@@ -235,7 +232,6 @@ sections:
       - {id: "15.7", q: "Current URLs that must keep working (redirects)", type: list, pri: S, src: scrape}
       - {id: "15.8", q: "Google Business Profile: who owns it, is it claimed, are hours, photos and link right?", type: text, pri: M, src: scrape}
       - {id: "15.9", q: "Who gets analytics access and the monthly report?", type: text, pri: S, src: ours}
-      - {id: "15.10", q: "Business email on the new domain: who needs an address?", type: list, pri: S, src: manual}
 
   - id: 16
     name: Approvals and timeline

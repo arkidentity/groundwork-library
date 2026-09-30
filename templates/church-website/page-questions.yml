@@ -1,0 +1,98 @@
+# Per-page questions (v0.2.0, 2026-09-30)
+#
+# After the client sends the page list (item q-pages), each page they KEPT gets its own small
+# conversation, built from this file. Pages they cut get nothing. "Not sure" pages wait until a
+# call settles them. A page they added gets 1 round of 3 questions written for that page.
+#
+# Rules (same as the rest of the template):
+#   - A round is at most 3 items; an item asks one thing, or at most 2 closely related prompts.
+#   - Skip any question we can already answer (prefill, calls, earlier answers). Instead, send what
+#     we have as a `planned:` confirm.
+#   - `bank:` links the question-bank ids each question fills, so answers file into content/.
+#   - Rounds continue after the last template round (the skill numbers them, starting after round 7).
+#   - Order the page conversations by the client's order, starred pages first.
+
+pages:
+  Home:
+    rounds:
+      - - {q: "What should a first-time visitor feel when they land on your site?", bank: ["1.3"]}
+        - {q: "Three words for your church's culture.", bank: ["1.4"]}
+        - {q: "Is there anything to feature right now? A series, an event, a season?", bank: ["2.2"]}
+    planned: ["2.4 welcome statement: we draft it from their words and they confirm it"]
+
+  Plan Your Visit:
+    note: Mostly answered by the Your Sundays conversation. Confirm what's left as `planned:`.
+    rounds:
+      - - {q: "Where do people park, and which door do they use?", bank: ["4.2"]}
+        - {q: "Accessibility: wheelchair access, hearing help, a nursing room, anything sensory-friendly?", bank: ["4.8"]}
+        - {q: "Do you want a \"tell us you're coming\" form, or just call and text?", bank: ["4.11"]}
+
+  What We Believe:
+    rounds:
+      - - {q: "In a sentence or two, what is your church? Say it like you would to a friend.", bank: ["1.1"]}
+        - {q: "What does your tradition or denomination mean, in plain words? Rough bullets are fine.", bank: ["5.5", "0.7"]}
+        - {q: "Is there a statement of faith we should use? Paste it, or we'll use the one online.", bank: ["5.4"]}
+      - - {q: "Your mission, if you have one written down (we'll confirm what we found).", bank: ["5.1"]}
+        - {q: "Anything your denomination requires you to say on the site?", bank: ["5.7", "15.6"]}
+
+  Our Pastor and Team:
+    rounds:
+      - - {q: "For each leader: name, role, photo and a short bio. (We'll fill in what we found; correct it.)", bank: ["6.1"]}
+        - {q: "Your lead pastor's story in 2 or 3 sentences: what should a visitor know?", bank: ["6.2"]}
+        - {q: "Which staff get a public email address?", bank: ["6.4"]}
+
+  Ministries:
+    note: >
+      First ask for the list (one item), then one round per ministry the client keeps. Only ask
+      about ministries that exist today. Kids and youth add their safety questions.
+    rounds:
+      - - {q: "List every ministry, class and regular gathering that happens today. Then anything that's planned.", bank: ["8.0"]}
+    per_ministry:
+      - - {q: "Who is it for, and what is it in 2 or 3 sentences?", bank: ["8.2", "8.3"]}
+        - {q: "When and where does it meet?", bank: ["8.4"]}
+        - {q: "Who leads it, and how does someone join?", bank: ["8.6", "8.7"]}
+
+  Next Steps:
+    rounds:
+      - - {q: "After a first visit, what's the path you hope people take? Connect, a group, serving, membership?", bank: ["7.1"]}
+        - {q: "How does membership work?", bank: ["7.3"]}
+        - {q: "How does someone ask about baptism?", bank: ["7.4"]}
+
+  Watch:
+    rounds:
+      - - {q: "Where do sermons or the livestream live? (We'll confirm what we found.)", bank: ["9.1", "3.3"]}
+        - {q: "Who uploads them, and how soon after Sunday?", bank: ["9.5"]}
+
+  Events:
+    rounds:
+      - - {q: "Where is the calendar kept today?", bank: ["10.1"]}
+        - {q: "Who will keep it current? If no one, we'll leave this page out.", bank: ["10.6"]}
+        - {q: "Your big yearly events.", bank: ["10.3"]}
+
+  Serve:
+    rounds:
+      - - {q: "Your serving teams, one line each. (We'll fill in what we found.)", bank: ["11.1"]}
+        - {q: "How does someone start serving?", bank: ["11.2"]}
+        - {q: "Any requirements? Membership, a background check, training?", bank: ["11.3"]}
+
+  Give:
+    rounds:
+      - - {q: "Other ways to give besides online: mail, text, in person?", bank: ["12.2", "12.6"]}
+        - {q: "In your own words, why does your church invite people to give?", bank: ["12.3"]}
+        - {q: "Any special funds right now? Building, missions?", bank: ["12.4"]}
+
+  Contact and Prayer:
+    rounds:
+      - - {q: "How do people prefer to reach you: call, text, email?", bank: ["13.1"]}
+        - {q: "How fast do you reply?", bank: ["13.4"]}
+        - {q: "Do you want an \"I need help\" path? Who handles it?", bank: ["13.3"]}
+
+# Always last, whatever pages they kept: getting ready to launch.
+launch:
+  rounds:
+    - - {q: "Who owns the website domain? Names only, please, no logins.", bank: ["15.3"]}
+      - {q: "Your Google listing (Google Business Profile): who owns it, and is it claimed?", bank: ["15.8"]}
+      - {q: "Who is the one person who approves the content?", bank: ["16.1"]}
+    - - {q: "A target launch date, or a hard deadline like Easter?", bank: ["16.3"]}
+      - {q: "Any pages or links on the old site that must keep working?", bank: ["15.7"]}
+      - {q: "Who should get the monthly report?", bank: ["15.9"]}

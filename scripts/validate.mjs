@@ -209,6 +209,7 @@ for (const t of dirs(join(ROOT, 'templates'))) {
 
   // items
   const ids = new Set()
+  const rounds = new Map()
   for (const f of files(join(base, 'assigned'), '.md')) {
     const path = join(base, 'assigned', f)
     const d = frontmatter(path, declared)
@@ -231,7 +232,20 @@ for (const t of dirs(join(ROOT, 'templates'))) {
       else if (d.prompts.length > 8) warn(rel(path), `${d.prompts.length} prompts is a lot even for a request`)
     }
     if (d.planned !== undefined && typeof d.planned !== 'string') err(rel(path), 'planned must be text')
+    if (d.round !== undefined) {
+      if (!Number.isInteger(d.round) || d.round < 1) err(rel(path), 'round must be a whole number, 1 or more')
+      else rounds.set(d.round, (rounds.get(d.round) ?? 0) + 1)
+    }
+    if (d.sitemap !== undefined) {
+      if (!Array.isArray(d.sitemap) || !d.sitemap.length) err(rel(path), 'sitemap must be a non-empty list')
+      else for (const p of d.sitemap) {
+        const name = typeof p === 'string' ? p : p?.page
+        if (typeof name !== 'string' || !name.trim()) err(rel(path), 'every sitemap entry needs a page name')
+      }
+    }
   }
+  const maxRound = Number(tpl.rules?.round_size ?? 3)
+  for (const [r, n] of rounds) if (n > maxRound) warn(where, `round ${r} has ${n} items; the rule is ${maxRound} or fewer`)
   for (const id of Object.keys(tpl.items ?? {})) {
     if (!ids.has(id)) err(where, `items lists "${id}" but no assigned file has that id`)
   }

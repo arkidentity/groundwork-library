@@ -5,6 +5,22 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.5.0 (2026-09-30)
+- **Contract: rounds and page lists** (app support shipped the same day). `round: N` on an item: a
+  client sees one round per project at a time and the next opens when they finish. `sitemap:` on an
+  item: an interactive page list (keep / not sure / cut, reorder, add, star 3); the answer carries a
+  structured `sitemap:`. Both documented in `docs/REPO-CONTRACT.md`; `validate` checks them and
+  warns when a round has more than 3 items.
+- **`church-website` 0.2.0, rebuilt around rounds.** Round 1 confirms (generated, 3 at most); round 2
+  the page list (`q-pages`) and three quick facts; rounds 3–5 links, the first-Sunday walk-through
+  (split into three small items), logo and photos; rounds 6–7 a new **"The tools you use"**
+  conversation (giving, people database, volunteers, calendar, email, sign-ups). The old 7-prompt
+  request is now three items of 2–3 prompts. "Our Pastor and Team" is its own default page.
+- New `page-questions.yml`: the rounds for each page a client keeps, plus the launch conversation,
+  linked to question-bank ids. `church-website-discovery` gains "draft round 1" and "draft the page
+  conversations".
+- Question bank: 10 low-value questions cut (listed at the top of the file).
+
 ## 0.4.0 (2026-10-01)
 - **Public release under the MIT license.** This repo is now published openly. All client names and
   client-specific examples were removed from templates, skills and docs; examples use `acme`, `Hope`

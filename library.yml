@@ -1,16 +1,16 @@
 # Groundwork library index. Bump `version` on every release and tag it (vX.Y.Z).
 name: groundwork-library
 source: arkidentity/groundwork-library   # owner/repo on GitHub; what workspaces put in `libraries:`
-version: 0.4.0
+version: 0.5.0
 contract: 3            # the workspace contract these templates and skills were written for
                        # (docs/REPO-CONTRACT.md in this repo)
 
 templates:
   - name: church-website
     path: templates/church-website
-    version: 0.1.1
+    version: 0.2.0
     title: Church website
-    description: Information discovery for a church site, in waves, with the conversion strategy and a 118-question bank.
+    description: Information discovery for a church site in rounds of 3 or fewer, an interactive page list, per-page questions, and the conversion strategy.
     tags: [church, website, discovery]
     pairs_with: [messaging]
   - name: messaging

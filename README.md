@@ -14,7 +14,7 @@ CHANGELOG.md
 
 | Template | What it is |
 |---|---|
-| `church-website` | Website information discovery in waves, conversion strategy, 118-question bank |
+| `church-website` | Website discovery in rounds of 3 or fewer, an interactive page list, per-page questions, conversion strategy |
 | `messaging` | Brand brief and voice capture, inspired by the StoryBrand framework (the upsell) |
 | `blank` | An empty project with one conversation |
 

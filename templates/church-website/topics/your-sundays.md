@@ -1,7 +1,7 @@
 ---
 title: Your Sundays
 project: {{project}}
-order: 3
+order: 4
 summary: A first visit, start to finish.
 ---
 

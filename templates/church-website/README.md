@@ -23,21 +23,28 @@ answers twice.
 **With B,** copy is written from the locked brand brief, and the Section 1 answers are replaced by
 B's. The pitch that's true: copy written before the message is settled gets rewritten.
 
-## The waves
+## Rounds, not waves
 
-| Wave | Who does the work | What happens |
+A client sees **one round at a time, 3 items at most**, and the next round opens when they finish.
+Each item asks one thing (at most 2 prompts; a request may carry 3 short ones). Easiest first.
+
+| Round | Conversation | What happens |
 |---|---|---|
-| **0. Prefill** | Us | Scrape their site, socials, listings and any call transcripts. Write every answer we can into `content/` marked `unconfirmed` with its source. |
-| **1. Confirm** | Client, 5 minutes | Send what we found as "planned" items: "We have Sunday 10:00. Right?" One tap to confirm, or say what's different. |
-| **2. Blockers** | Client, by talking | The MUST questions nobody could scrape (marked `src: manual`). Stories are asked to be talked, not typed. |
-| **3. Per page** | Client, as each page is built | The rest, one section at a time, only for sections that exist (see gates). |
-| **4. Launch list** | Client + us | Domain, DNS, email, redirects, analytics, Google Business Profile, who updates it. |
+| 0 | (us) | **Prefill.** Scrape their site, socials, listings and call transcripts into `content/`, marked `unconfirmed`. |
+| 1 | Does this look right? | Up to 3 one-tap confirms of what we found (basics, the week, the pastor). |
+| 2 | Your pages · A few quick things | **The page list** (keep / cut / add / star 3) and three quick facts. |
+| 3–5 | A few quick things · Your Sundays | Links, the first-Sunday walk-through, logo and photos, first-timer questions. |
+| 6–7 | The tools you use | Giving, people database, volunteers; calendar, email, sign-ups. "Nothing yet" becomes our recommendation, never homework. |
+| 8+ | One per kept page | From `page-questions.yml`, only for pages they kept, starred pages first. |
+| last | Getting ready to launch | Domain, Google listing, approver, launch date, redirects, report. |
 
-Never send a blank question we could have answered ourselves. Never send more than one wave at once.
+Never send a blank question we could have answered ourselves: send it as a `planned:` confirm.
+To hold a round for review, keep its items `audience: team` until you're ready.
 
 ## Gates: ask whether it exists first
-Before any section's detail, ask one yes/no per area: livestream, sermons online, events tool,
-online giving, kids, youth, small groups, care ministry, second language. A "no" turns the section
+Most gates are answered by the page list: a cut page turns its section off. The rest (kids, youth,
+groups, care, second language) come from the ministry list and prefill, never a list of yes/no
+questions. A "no" turns the section
 off and is recorded as `n/a`, not `empty`. A "not yet" becomes a line on the roadmap, never a
 question. (A church with no youth ministry should never be asked to describe it.)
 
@@ -61,6 +68,7 @@ site is built from `confirmed` values. Nothing unconfirmed ships.
 ## Files in this kit
 - `STRATEGY.md`: how we build church sites that convert, and what we measure.
 - `question-bank.yml`: every question with priority, source, gate, destination and B overlap.
-- `sitemap.md`: default pages, each with its one job.
+- `sitemap.md`: default pages, each with its one job (the page list in `q-pages`).
+- `page-questions.yml`: the rounds for each page a client keeps, linked to bank ids.
 - Skill: `church-website-discovery` ships inside each church repo at `.claude/skills/`
   (master: `examples/sample-workspace/.claude/skills/`). Say **"start website discovery"**.

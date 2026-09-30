@@ -1,8 +1,8 @@
 ---
-title: Send us what you have
+title: A few quick things
 project: {{project}}
-order: 2
-summary: Everything you already have, in one place. Links are perfect.
+order: 3
+summary: A few facts, links and files, in small pieces.
 ---
 
-Before we ask you anything more, we'd like to read what you already have, so we don't ask twice.
+Before we ask you anything bigger, we'd like to see what you already have, so we don't ask twice.
