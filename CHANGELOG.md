@@ -5,6 +5,14 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.6.0 (2026-10-01)
+- **Contract: asking several people** (app support shipped 2026-10-01). `ask: [Alex, Sam]` on an
+  item, a topic or a project (items inherit from their topic, then project). Each person asked
+  answers for themselves; the item moves to answered only when everyone has; answers stay hidden
+  from someone asked until they've given theirs. Rounds move at each person's pace. Documented in
+  `docs/REPO-CONTRACT.md`; `validate` checks the field's shape.
+- No template changes.
+
 ## 0.5.0 (2026-09-30)
 - **Contract: rounds and page lists** (app support shipped the same day). `round: N` on an item: a
   client sees one round per project at a time and the next opens when they finish. `sitemap:` on an

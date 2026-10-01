@@ -139,6 +139,7 @@ Body: context in plain language. What we know, what we need, why it matters.
 | `priority_prompts` | no | e.g. `[2, 4]`: 1-based prompts the team starred. Shown with a "Priority" tag; order and numbering don't change (answers record prompts by number). Toggled with the ☆ beside each prompt. |
 | `links` | for `review`/`link` | list of `{ title, url }`, shown as page cards. `link: <url>` still works for one. |
 | `prompts` | no | several questions answered in one go. Shown as a numbered checklist pinned above the Talk button; the client ticks each as they cover it. Best on a `review`: the page plus the open questions it raises. Keep to 2–5. |
+| `ask` | no | who is asked: a list of names (first or full) or emails from `groundwork.yml` `people:` and `team:`, e.g. `[Alex, Sam]`. Also allowed on a topic or project; an item without its own takes its topic's, then its project's. See *Asking several people* below. |
 | `sitemap` | no | a page list for the client to shape. Each entry is `{ page, job, fixed }` (or just a page name); `fixed: true` can't be cut (Home). The client marks each page Keep / Not sure / Cut, reorders, adds their own and stars up to 3. See *Page lists* below. |
 | `round` | no | a whole number, `1` and up. Asks in small rounds: within a project, a client sees only the lowest round that still has an open item (plus anything already answered). Answering the last open item opens the next round automatically. Keep rounds to 3 items or fewer, easiest first. Items without a round always show; team-only items don't count toward a round. See *Rounds* below. |
 | `planned` | no | what we intend to do. The client confirms with one tap (saved as an inbox file with `confirmed: true`) or says what's different. The best fit for clients who prefer intentions over approval questions. |
@@ -231,6 +232,25 @@ The team's ☆ in the app writes `priority: now` into the file's frontmatter; ta
 - **Items:** see `priority` above. Starred items win Next up.
 - **Prompts:** see `priority_prompts` above.
 - **Library docs:** starred docs are listed first under "Starred." A doc without frontmatter gets a small `---` block added. Otherwise the welcome doc comes first, then the rest by title.
+
+## Asking several people: `ask:`
+
+```yaml
+ask: [Alex, Sam]     # on an item, a topic (conversation) or a project
+```
+
+- **Each person asked answers for themselves.** The item shows "Asked of Alex, Sam. Sam answered.
+  Still open for Alex." It leaves Sam's Next up and counts as done for them, and stays in Alex's.
+- **It moves to answered only when everyone asked has answered**, whether they're client or team.
+  Taking an answer back reopens it.
+- **Rounds go at each person's pace.** An item you answered counts as done for you, so your next
+  round opens even while others are still answering yours.
+- **Answers stay hidden until you've given yours.** Someone asked who hasn't answered sees how many
+  others have, not what they said (filtered on the server). After answering, they see everyone's.
+  People who weren't asked see every answer, and can still add their own.
+- **Without `ask:`** nothing changes: the client's answer moves it to answered, team answers are context.
+- **Disagreements** are found when processing the inbox: compare the answers to the same item and
+  list where they differ, as a follow-up item to both or a note for the next call.
 
 ## Page lists: `sitemap:`
 

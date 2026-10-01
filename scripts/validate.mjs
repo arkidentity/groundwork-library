@@ -232,6 +232,7 @@ for (const t of dirs(join(ROOT, 'templates'))) {
       else if (d.prompts.length > 8) warn(rel(path), `${d.prompts.length} prompts is a lot even for a request`)
     }
     if (d.planned !== undefined && typeof d.planned !== 'string') err(rel(path), 'planned must be text')
+    if (d.ask !== undefined && (!Array.isArray(d.ask) || d.ask.some((x) => typeof x !== 'string' || !x.trim()))) err(rel(path), 'ask must be a list of names or emails')
     if (d.round !== undefined) {
       if (!Number.isInteger(d.round) || d.round < 1) err(rel(path), 'round must be a whole number, 1 or more')
       else rounds.set(d.round, (rounds.get(d.round) ?? 0) + 1)
