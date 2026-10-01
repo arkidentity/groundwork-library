@@ -14,6 +14,8 @@ A working example lives in [`examples/sample-workspace/`](../examples/sample-wor
 <client>-workspace/            ← one private repo per client, e.g. acme-workspace
   README.md                    ← for us: who the client is
   groundwork.yml               ← client name, who can log in, `notes_repo`. (`groundwork.yml` also takes an optional `libraries:` pin).
+                               `team:` entries written `Name <email>` get team access to this workspace only;
+                               `people:` entries (`Name <email>`) are the people being asked.
   .claude/skills/               ← groundwork-inbox + groundwork-outbox. Load for anyone who opens
                                this repo in Claude Code. Master copies: groundwork/examples/.
   notes/                       ← team-only filed notes (one-repo setups, where no project repo is set).

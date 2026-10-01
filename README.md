@@ -1,5 +1,7 @@
 # groundwork-library
 
+**New to Groundwork?** Start with [GETTING-STARTED.md](GETTING-STARTED.md).
+
 Templates and skills for Groundwork client workspaces, versioned in one place. The app
 (`arkidentity/groundwork`) never reads this repo; only people and skills do, when they start a
 project or sync skills. **Releasing a template is a git tag, not a deploy.**
@@ -23,7 +25,8 @@ CHANGELOG.md
 | `groundwork-inbox` | Process what the client sent |
 | `groundwork-outbox` | Draft and publish what goes to the client |
 | `groundwork-project` | Create or change a project from a template |
-| `church-website-discovery` | Run the website discovery waves (optional) |
+| `church-website-discovery` | Run the website discovery rounds (optional) |
+| `groundwork-setup` | Set up Groundwork for a new organization, from scratch (used once) |
 
 ## Using it
 

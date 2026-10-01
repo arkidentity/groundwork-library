@@ -5,6 +5,15 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.7.0 (2026-10-01)
+- **New skill `groundwork-setup`**: walks a new organization from nothing to a working workspace
+  (tools, private repo, `groundwork.yml`, folders, welcome and `CLAUDE.md`, the never-in-the-repo
+  list, installing the GitHub App, requesting access, syncing skills, first project, the daily loop).
+  Not synced into workspaces; install it once from this repo (see `GETTING-STARTED.md`).
+- **`GETTING-STARTED.md`** for people new to Groundwork.
+- Contract: `team:` entries written `Name <email>` give team access to that workspace only (the app
+  supports this as of 2026-10-01, along with approving other organizations one at a time).
+
 ## 0.6.0 (2026-10-01)
 - **Contract: asking several people** (app support shipped 2026-10-01). `ask: [Alex, Sam]` on an
   item, a topic or a project (items inherit from their topic, then project). Each person asked
