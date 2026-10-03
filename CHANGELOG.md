@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.10.0 (2026-10-03)
+- **Answers record what was open beside them** (app support shipped 2026-10-03): `viewing:`
+  (`deliverable:<slug>`, `library:<doc>` or a web address) and, for a deliverable,
+  `viewing_version:` (the commit of the page). `groundwork-inbox` reads that exact page before the
+  answer.
+
 ## 0.9.0 (2026-10-03)
 - **Every client gets a brand for their pages.** `groundwork-setup` asks for their branding
   (website, brand guide, colors, fonts) and builds `workspace/deliverables/_shared/brand.css`;

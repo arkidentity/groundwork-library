@@ -61,6 +61,14 @@ client ticked, but read the whole answer: people cover things they didn't tick a
 they did. File one note per item with a section per prompt, and list any prompt left unanswered
 as an open question (and a candidate follow-up).
 
+An answer with `viewing:` was sent with that page open beside it, so read the page before you read
+the answer: "the headline feels off" means the headline *they saw*.
+- `deliverable:<slug>` with `viewing_version: <commit>`: that exact version, with
+  `git show <commit>:workspace/deliverables/<slug>/index.html`. If the page has changed since, say
+  so in the note, and check whether their point still applies to the current version.
+- `library:<doc>`: `workspace/shared/<doc>.md`.
+- a web address: open it if you can; otherwise note what it was.
+
 An answer with `confirmed: true` is a one-tap "Sounds right" on the item's `planned` text: treat the
 plan as a decision the client agreed to, and file it that way (it's usually one line in the
 project's decisions, not a whole note). Items may belong to a `topic` (`workspace/topics/`); group
