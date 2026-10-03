@@ -39,6 +39,14 @@ File formats: `arkidentity/groundwork-library` → `docs/REPO-CONTRACT.md` (topi
      computer and follows the workspace login, so it needs no sharing check. A client brand goes
      in `workspace/deliverables/_shared/brand.css`. Older Claude artifact links still work but
      open in a new tab; move them over when you touch them.
+   - **Brand first.** Before making a client page, check for
+     `workspace/deliverables/_shared/brand.css`. If it's missing, say so and stop to identify their
+     branding with the person you're working with: their website, a brand guide or logo files,
+     their colors and fonts. Ask, don't guess. Then build the brand file from
+     `deliverable-starter/` (next to this skill), noting where each value came from, and show it
+     before saving. Start every page from `deliverable-starter/page/`: it links Groundwork's
+     neutral `/deliverable.css` and then the brand file, so a page made before the brand exists
+     looks clean and neutral, and picks up the brand once it's added.
    - **For the team:** copy the spec into a team-only Library doc,
      `workspace/shared/for-the-team/<slug>.md`, with frontmatter `audience: team`,
      `source: <project repo>/<path>` and `copied: <date>`, and a one-line note under the title

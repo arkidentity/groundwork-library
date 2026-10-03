@@ -1,7 +1,7 @@
 # Groundwork library index. Bump `version` on every release and tag it (vX.Y.Z).
 name: groundwork-library
 source: arkidentity/groundwork-library   # owner/repo on GitHub; what workspaces put in `libraries:`
-version: 0.8.0
+version: 0.9.0
 contract: 3            # the workspace contract these templates and skills were written for
                        # (docs/REPO-CONTRACT.md in this repo)
 

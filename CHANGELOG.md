@@ -5,6 +5,15 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.9.0 (2026-10-03)
+- **Every client gets a brand for their pages.** `groundwork-setup` asks for their branding
+  (website, brand guide, colors, fonts) and builds `workspace/deliverables/_shared/brand.css`;
+  `groundwork-outbox` checks for it before making any client page and stops to identify it if
+  missing.
+- **`deliverable-starter/`** in the `groundwork-outbox` skill: a brand file to fill in and a page to
+  copy. Pages link Groundwork's neutral `/deliverable.css`, then the brand, so a page made before
+  the brand exists looks clean and neutral rather than unstyled.
+
 ## 0.8.0 (2026-10-03)
 - **Hosted deliverables** (app support shipped 2026-10-03). Pages for a client live in the workspace
   at `workspace/deliverables/<slug>/` (`index.html` + `deliverable.yml`), linked as
