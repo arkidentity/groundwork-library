@@ -92,15 +92,13 @@ organization is, who's on the team, what the people they ask can see (only `work
 `topics`, `projects`, `shared`), the "never put in the repo" list below, and "nothing reaches
 them without a yes."
 
-**Their brand, for pages we make them** (`workspace/deliverables/_shared/brand.css`): pages we
-build for them (plans, specs, designs) show inside Groundwork and should look like them. Ask for
-their website, a brand guide or logo files, and their colors and fonts; don't guess. Copy
-`deliverable-starter/_shared/brand.css` from the `groundwork-outbox` skill and fill it in, noting
-where each value came from. If they don't know yet, skip it for now: pages fall back to
-Groundwork's neutral look, and the `groundwork-outbox` skill asks again before the first page.
-Once the brand is known, also add a `theme:` to `groundwork.yml` so the workspace itself wears
-their colors and fonts (hex colors and Google Fonts names only; see the Groundwork repo's
-`docs/ADDING-A-CLIENT.md`). Use the same values as the brand file.
+**Their brand** (`theme:` in `groundwork.yml`): one block of colors (light and dark) and Google
+Fonts that styles their Groundwork workspace and every page we make them. Ask for their website, a
+brand guide or logo files, and their colors and fonts; don't guess. Note where each value came
+from (see the Groundwork repo's `docs/ADDING-A-CLIENT.md` for the keys). If they don't know yet,
+skip it: everything stays in Groundwork's neutral look, and the `groundwork-outbox` skill asks again
+before the first page. Extras a theme can't express (a texture, a logo) can go in
+`workspace/deliverables/_shared/brand.css`; most clients need none.
 
 **`.gitignore`**: `.DS_Store`, `node_modules/`, and big media (`*.mp3 *.m4a *.wav *.mp4 *.mov *.zip`).
 

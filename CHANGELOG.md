@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.12.0 (2026-10-03)
+- **One place for a client's brand:** `theme:` in `groundwork.yml` now styles their pages too (the
+  app serves it to pages as `_theme.css`). Setup and outbox ask for the theme instead of a separate
+  stylesheet; `_shared/brand.css` is only for optional extras (textures, logos).
+- Starter page links `/deliverable.css`, `_theme.css`, then `_shared/brand.css`.
+
 ## 0.11.0 (2026-10-03)
 - **Workspace theme** (app support shipped 2026-10-03): `theme:` in `groundwork.yml` gives a
   workspace the client's colors (light and dark) and Google Fonts. `groundwork-setup` adds it once

@@ -1,38 +1,15 @@
-/* <Client> brand for Groundwork deliverables.
+/* [Client] extras for Groundwork pages. OPTIONAL.
  *
- * Loaded after Groundwork's /deliverable.css, so it only needs to override what differs.
- * Source of each value: say where it came from (their website, brand guide, logo file), so the
- * next person can check it. Ask, don't guess: a wrong brand is worse than the neutral default.
+ * Colors and fonts do NOT go here: they come from `theme:` in groundwork.yml (served to pages as
+ * _theme.css), so the workspace and the pages always match. Use this file only for what a theme
+ * can't express: a background texture, a logo, a signature detail. Delete what you don't need.
  */
 
-/* Fonts: Google Fonts only (other font hosts may not load). */
-/* @import url("https://fonts.googleapis.com/css2?family=<Display+Font>:wght@600;700&family=<Body+Font>:wght@400;600&display=swap"); */
+/* A background texture saved next to this file:
+body { background-image: url(paper.avif); background-blend-mode: multiply; background-size: cover; }
+*/
 
-:root {
-  --bg: #fafaf9;        /* page background */
-  --fg: #1c1b19;        /* body text */
-  --muted: #6b6862;     /* secondary text */
-  --surface: #ffffff;   /* cards */
-  --line: #e4e2dd;      /* rules and borders */
-  --accent: #2f5d50;    /* their main brand color: links, labels, question boxes */
-  --on-accent: #ffffff; /* text on the accent */
-  --note: #fff7e0;      /* note boxes */
-  --radius: 14px;       /* corner roundness: match their site */
-  /* --font: "<Body Font>", system-ui, sans-serif; */
-  /* --serif: "<Display Font>", Georgia, serif; */
-}
-
-/* Dark mode: give their colors a dark version, or delete this block to stay light-only. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #161615;
-    --fg: #ecebe8;
-    --muted: #a19e97;
-    --surface: #1f1f1d;
-    --line: #34332f;
-    /* --accent: <a lighter version of their color>; */
-  }
-}
-
-/* Headings in their display face (delete if they use one font). */
-/* h1, h2 { font-family: var(--serif); } */
+/* A signature detail, using the theme's colors:
+.eyebrow::before { content: ""; display: inline-block; width: 24px; height: 3px; margin-right: 10px;
+  vertical-align: middle; background: var(--accent); }
+*/

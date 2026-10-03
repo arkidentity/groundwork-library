@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><Page title></title>
-  <!-- Neutral Groundwork look, then the client's brand on top. Keep both, in this order. -->
+  <title>[Page title]</title>
+  <!-- Keep all three, in this order:
+       1. Groundwork's neutral look
+       2. the client's colors and fonts, built from theme: in groundwork.yml
+       3. optional extras for this client (textures, logos); fine if it doesn't exist -->
   <link rel="stylesheet" href="/deliverable.css">
+  <link rel="stylesheet" href="_theme.css">
   <link rel="stylesheet" href="_shared/brand.css">
   <style>
     /* Styles for this page only. Use the brand tokens (var(--accent) etc.), not raw colors. */
@@ -13,8 +17,8 @@
 </head>
 <body>
   <main>
-    <div class="eyebrow"><Client> · Draft 1 · <Month Year></div>
-    <h1><Page title></h1>
+    <div class="eyebrow">[Client] · Draft 1 · [Month Year]</div>
+    <h1>[Page title]</h1>
     <p class="lede">One sentence: what this page is and why it matters to them.</p>
     <p class="muted">Who it's for, and what we'd like from them.</p>
 
