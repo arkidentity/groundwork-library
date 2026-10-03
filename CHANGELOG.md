@@ -5,6 +5,15 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.8.0 (2026-10-03)
+- **Hosted deliverables** (app support shipped 2026-10-03). Pages for a client live in the workspace
+  at `workspace/deliverables/<slug>/` (`index.html` + `deliverable.yml`), linked as
+  `deliverable:<slug>`, and open beside the conversation on a computer. A client brand goes in
+  `workspace/deliverables/_shared/brand.css`. The team can switch on a share link per page.
+- `groundwork-outbox`: client pages are hosted deliverables now; the artifact sharing check only
+  applies to Claude artifact links still in a workspace.
+- The app is at **groundwork.chat**.
+
 ## 0.7.0 (2026-10-01)
 - **New skill `groundwork-setup`**: walks a new organization from nothing to a working workspace
   (tools, private repo, `groundwork.yml`, folders, welcome and `CLAUDE.md`, the never-in-the-repo

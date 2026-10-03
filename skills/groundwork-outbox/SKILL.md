@@ -33,8 +33,12 @@ File formats: `arkidentity/groundwork-library` → `docs/REPO-CONTRACT.md` (topi
    secure channel: rule 3 still applies.
 6. **Link to things people can open inside the Workspace.** Never put a GitHub link in a Workspace
    item: project repos are private, and GitHub shows a 404 to anyone not signed in with access.
-   - **For the client:** a designed artifact page, shared "anyone with the link" (see the
-     sharing check).
+   - **For the client:** a hosted deliverable: `workspace/deliverables/<slug>/index.html` plus a
+     `deliverable.yml` (title, audience), linked as `deliverable:<slug>` (see "Hosted
+     deliverables" in the Groundwork repo contract). It opens beside the conversation on a
+     computer and follows the workspace login, so it needs no sharing check. A client brand goes
+     in `workspace/deliverables/_shared/brand.css`. Older Claude artifact links still work but
+     open in a new tab; move them over when you touch them.
    - **For the team:** copy the spec into a team-only Library doc,
      `workspace/shared/for-the-team/<slug>.md`, with frontmatter `audience: team`,
      `source: <project repo>/<path>` and `copied: <date>`, and a one-line note under the title
@@ -124,6 +128,7 @@ Commit the drafts (`outbox: draft <n> items for <client>`) and push when asked, 
 review on GitHub.
 
 ### Sharing check (every run, and again right before publishing)
+Only for Claude artifact links still in the workspace; hosted deliverables don't need it.
 A Claude artifact is **private when first published**. Only the person who owns it can make it
 open to others (the page's Share menu → "Anyone with the link"); Claude can't. A private link
 opens for us and fails for the client, so check before anything goes out.
