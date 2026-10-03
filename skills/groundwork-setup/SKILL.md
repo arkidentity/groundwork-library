@@ -15,7 +15,7 @@ or typing; their answers land back in the repo, where Claude helps you file them
 ask next. The repo is the memory; the app is the front door.
 
 Facts you need (from `docs/REPO-CONTRACT.md` in this library):
-- App: **https://groundwork-lyart-delta.vercel.app** (a custom domain is planned; the old address will redirect).
+- App: **https://groundwork.chat**
 - GitHub App to install: **https://github.com/apps/groundwork-workspace**
 - Access is approved by hand. The library's maintainer adds each organization's GitHub account to
   the app's allowed list. Contact: open an issue on `arkidentity/groundwork-library` titled

@@ -33,7 +33,7 @@ your first project.
 3. **Request access:** open an issue here titled "Access request: <your GitHub account>". Access is
    approved by hand.
 4. Sync the skills into your repo: `node scripts/sync-skills.mjs --repo ../<your-repo> --commit`, then push.
-5. Sign in at **https://groundwork-lyart-delta.vercel.app** with the email you put in `team:`.
+5. Sign in at **https://groundwork.chat** with the email you put in `team:`.
 
 ## Never put these in the repo
 Passwords, logins, API keys; card, bank or ID numbers; health, counseling, legal or children's
