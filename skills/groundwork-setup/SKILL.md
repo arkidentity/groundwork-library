@@ -98,6 +98,9 @@ their website, a brand guide or logo files, and their colors and fonts; don't gu
 `deliverable-starter/_shared/brand.css` from the `groundwork-outbox` skill and fill it in, noting
 where each value came from. If they don't know yet, skip it for now: pages fall back to
 Groundwork's neutral look, and the `groundwork-outbox` skill asks again before the first page.
+Once the brand is known, also add a `theme:` to `groundwork.yml` so the workspace itself wears
+their colors and fonts (hex colors and Google Fonts names only; see the Groundwork repo's
+`docs/ADDING-A-CLIENT.md`). Use the same values as the brand file.
 
 **`.gitignore`**: `.DS_Store`, `node_modules/`, and big media (`*.mp3 *.m4a *.wav *.mp4 *.mov *.zip`).
 

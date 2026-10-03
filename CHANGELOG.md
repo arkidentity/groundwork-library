@@ -5,6 +5,11 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.11.0 (2026-10-03)
+- **Workspace theme** (app support shipped 2026-10-03): `theme:` in `groundwork.yml` gives a
+  workspace the client's colors (light and dark) and Google Fonts. `groundwork-setup` adds it once
+  the brand is known, with the same values as `_shared/brand.css`.
+
 ## 0.10.0 (2026-10-03)
 - **Answers record what was open beside them** (app support shipped 2026-10-03): `viewing:`
   (`deliverable:<slug>`, `library:<doc>` or a web address) and, for a deliverable,
