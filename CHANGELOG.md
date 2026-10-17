@@ -5,6 +5,16 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.13.0 (2026-10-17)
+- **Decided and dropped** (app support shipped 2026-10-17): items take `status: decided` with a
+  one-line `decided:` and `settled: <date>`, or `status: dropped`. Clients see a Decided page;
+  dropped items vanish for them. `groundwork-inbox` step 5b proposes settling items, and offers it at
+  the end of any working session.
+- **Stale asks expire:** the app hides open asks untouched for 14 days from clients and flags them
+  for the team (`keep: true` opts out). The inbox skill proposes a rewrite or drop.
+- **The ask check** (`groundwork-outbox` 4b): show then ask, lead with a plan, one question of 20
+  words or fewer, nothing loaded, an example when a blank page would stall them, nothing stale.
+
 ## 0.12.0 (2026-10-03)
 - **One place for a client's brand:** `theme:` in `groundwork.yml` now styles their pages too (the
   app serves it to pages as `_theme.css`). Setup and outbox ask for the theme instead of a separate

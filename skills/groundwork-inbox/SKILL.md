@@ -145,12 +145,27 @@ contract's format, with the next unused id, `status: open`, `assigned: <today>`,
 it continues. Then publish it the way the outbox skill does (`git mv` into `workspace/`) once the
 person you're working with says so.
 
-Also check each answered item's status against what actually came in, and propose changes:
-- **Settled** → `closed`.
+### 5b. Settle what's settled
+The client's Decided page and the team's Home stay true only if items move when things settle.
+Check every item (not just today's answers) against what actually came in and what the team has
+decided in calls and logs since, and propose changes:
+- **We landed it** → `status: decided`, plus `decided:` (one plain sentence the client will read on
+  their Decided page, e.g. "Your billboard: A church where no one stays unknown.") and
+  `settled: <today>`.
+- **We moved past it** (a different direction, made moot, replaced by a newer ask) → `status:
+  dropped` and `settled: <today>`. Clients never see dropped items; the team sees them folded on
+  Decided.
+- **Done with nothing to record** (a link they looked at, a file they sent) → `closed`.
 - **Marked answered, but nothing real came in** (only set-aside entries) → back to `open`, so it
   shows as waiting on the client again.
+- **Open and over 14 days old** (the app now hides these from the client and flags them for the
+  team) → propose a rewrite, `dropped`, or an `updates:` line if it still matters as is.
 
-On approval, change only the `status:` line, nothing else in the file.
+Show the proposal as a short list: id, title, new status, and the `decided:` line. On approval,
+change only `status:` and add `decided:` / `settled:`; leave everything else in the file alone.
+
+**End of any working session, not just inbox runs:** if the person you're working with settled or
+dropped something that has an item in Groundwork, offer this step for those items before you wrap up.
 
 ### 6. Lock and commit
 1. `git mv` each filed inbox file into `workspace/inbox/processed/`.

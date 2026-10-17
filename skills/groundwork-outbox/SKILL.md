@@ -122,6 +122,23 @@ Into `outbox/topics/<slug>.md` and `outbox/assigned/<id>-<slug>.md`, in the cont
 - **Bodies** short: a sentence of context, the thing we need, and why it matters. Their vocabulary,
   not ours. No jargon. Follow the project's voice rules (for example, no em dashes).
 
+### 4b. The ask check (every item, before step 5)
+Clients answer on a phone, one thing at a time, often by talking. An ask they have to decode goes
+unanswered. Rewrite any item that fails one of these:
+1. **Show, then ask.** If there's anything to look at (a draft, a page, a list), link it. Reacting
+   beats writing from scratch.
+2. **Lead with what we think.** If we have a guess, it's a `planned:` quick confirm, so the answer
+   can be one tap ("Sounds right"). Most items should be this.
+3. **One question per prompt, 20 words or fewer.** No "and/or", no two questions joined.
+4. **Not loaded.** No question that has a right answer, assumes a problem, or asks them to judge
+   themselves ("Why haven't you…", "How committed are you…"). Ask what they see, want, or would do.
+5. **Easy to start.** Where a blank page would stall them, add an example of the kind of answer
+   that helps ("Even one sentence is enough, like: …").
+6. **Still true.** Nothing we've already decided, dropped, or moved past (check `decisions.md` and
+   the last week of logs). The app hides asks untouched for 14 days; don't publish one you'd let
+   go stale.
+In step 5, list any item you rewrote and why, in a line each.
+
 ### 5. Review with the person you're working with
 Show the plan as a compact outline: topics in order, each item's id, type, title, and whether it's
 a quick confirm. Then the list of things left out and why (sensitive, settled, not theirs, later).
