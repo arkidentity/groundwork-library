@@ -183,6 +183,44 @@ Verbatim text. No cleanup.
 The time in the filename prevents collisions when someone answers twice. Filenames for brain dumps
 use `brain-dump` as the `re` part.
 
+## Threads: `workspace/threads/<note id>.md`
+
+A note left on a hosted page gets a thread: our replies, its status, and who it's waiting on. The
+raw inbox note is never edited; `<note id>` is its filename without `.md`. The app writes the file
+when the note is sent and on every reply; it moves with nothing when the note is processed.
+
+```markdown
+---
+note: workspace/inbox/2026-11-12-brain-dump-101500.md
+title: "Note on Welcome: Plan a visit"
+status: open          # open | answered | done
+waiting_on: team      # a first name, full name or email; "team"; or empty for nobody
+team_only: false      # true: clients never see it
+from: Alex Rivera
+from_email: alex@example.com
+spot: { page: welcome, label: Plan a visit, section: Hero }   # page = deliverable slug
+created: 2026-11-12T10:15:00.000Z
+---
+
+### Alex Rivera · 2026-11-12T10:15:00.000Z
+The note's words (copied, so the thread reads on its own).
+
+### Sam (team) · 2026-11-12T11:02:00.000Z
+Our reply.
+```
+
+- A reply is a `### Name · <ISO time>` block (` (team)` after the name for us), appended in order.
+- Photos and PDFs sent with a reply are saved to `workspace/inbox/files/` like a note's, and listed at
+  the end of the reply, one per line: `[file](workspace/inbox/files/2026-11-13-101500-1-img-2041.jpg)`.
+  Links stay in the text; the drawer shows them as cards. Viewers get a file only through a thread
+  they can see.
+- A team reply sets `waiting_on` to the note's author and an open thread to `answered`; a client
+  reply sets `waiting_on: team` and reopens it. The team can set status, waiting on and team-only.
+- Who sees it: the team sees every thread; a client sees threads they started or that wait on
+  them, never `team_only`. Dots show on the spot whose `data-note` or text starts with `label`.
+- **Inbox skill:** when replying to a processed note, append a `### Name (team)` block and set
+  `status` / `waiting_on` the same way, in the processing commit.
+
 ## Shared library: `workspace/shared/**.md`
 
 Plain markdown. The first `# Heading` is the title shown in the library. Subfolders become sections.

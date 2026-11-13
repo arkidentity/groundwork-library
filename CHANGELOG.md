@@ -5,6 +5,13 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.15.0 (2026-11-13)
+- **Threads** (app support shipped 2026-11-12/13): a note left on a hosted page starts
+  `workspace/threads/<note id>.md` with the spot, status (`open`/`answered`/`done`), `waiting_on`,
+  `team_only`, and replies from either side, which can carry photos and PDFs. Contract section
+  "Threads" added. `groundwork-inbox` reads a note's thread with it (step 1) and drafts our reply
+  on the thread for a yes, then sets status and waiting on (new step 3c).
+
 ## 0.14.0 (2026-11-03)
 - **New core skill `shared-repo-sync`:** two Claude Code hooks for repos our team and the client
   both edit. A session start pulls from GitHub; the end of each reply warns about uncommitted or

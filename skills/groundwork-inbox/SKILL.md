@@ -69,6 +69,12 @@ the answer: "the headline feels off" means the headline *they saw*.
 - `library:<doc>`: `workspace/shared/<doc>.md`.
 - a web address: open it if you can; otherwise note what it was.
 
+**A note left on a page has a thread** (`workspace/threads/<note id>.md`, where `<note id>` is the
+inbox filename without `.md`). Read it with the note: it has the spot (`spot:`), whether it's
+`team_only`, and any replies since, from either side, in the app's drawer. A later reply in the
+thread may already answer or change the note, so file what the thread says now, not just the
+first message. Thread replies can carry photos too (`[file](workspace/inbox/files/…)` lines).
+
 An answer with `confirmed: true` is a one-tap "Sounds right" on the item's `planned` text: treat the
 plan as a decision the client agreed to, and file it that way (it's usually one line in the
 project's decisions, not a whole note). Items may belong to a `topic` (`workspace/topics/`); group
@@ -121,6 +127,32 @@ sitting in the inbox, where they'd come up every time.
 Feedback about the Workspace app itself belongs with whoever maintains the Groundwork app, not in the
 client's project. Mention it; don't file it here.
 
+### 3c. Answer on the thread
+A note with a thread is a conversation on a spot, and the person who left it sees our reply there,
+on the dot, next to what they were looking at. So for each one, draft a short reply in chat: what
+we heard and what we'll do (or did), in the client's words, no jargon, a sentence or three. Same
+rules as anything sent to the client (ground rule 3): **nothing is written without a yes**, and a
+reply to a team-only thread is for the team only.
+
+With a yes, append the reply to the thread file as the app does (see the contract, "Threads"):
+
+```markdown
+
+### Sam (team) · 2026-11-13T15:04:00.000Z
+Got it. We moved the service time to the bottom line in draft 4.
+```
+
+- The name is the person you're working with, plus ` (team)`; the time is now, in UTC ISO.
+- Then set the frontmatter the way a team reply in the app would, unless they say otherwise:
+  - a question back to the client: `status: answered`, `waiting_on: <their first name or email>`;
+  - nothing more needed from anyone: `status: done`, `waiting_on: ""`;
+  - we still owe them something: leave `status: open`, `waiting_on: team`.
+- Change only `status`, `waiting_on` and the new `###` block. Never edit an earlier reply, the
+  first message or `spot`. Never write to a thread that doesn't exist; a note without one (an
+  answer to an item, a message from Home) gets its follow-up through step 5 instead.
+- A thread that's already settled in the app (`done`, or the last reply is ours and says enough)
+  needs no reply; say so in the rundown.
+
 ### 4. Update the project's running files
 If the project has them, follow their exact format:
 - **Decisions** → append to its decisions file. Never rewrite past entries.
@@ -170,7 +202,9 @@ dropped something that has an item in Groundwork, offer this step for those item
 ### 6. Lock and commit
 1. `git mv` each filed inbox file into `workspace/inbox/processed/`.
 2. Commit the **workspace repo**: `inbox: processed <n> answers (<ids>)`, adding
-   `; set aside <n> (<filenames>, <reason>)` when there are any, plus any new or changed assigned items.
+   `; set aside <n> (<filenames>, <reason>)` when there are any, `; replied on <n> threads` when
+   there are any, plus any new or changed assigned items and thread files. Thread files stay in
+   `workspace/threads/`; they don't move when their note is processed.
 3. Commit the **project repo** following its conventions.
 4. Show what changed in both, then push both. If a push is rejected because the client edited or took
    back an answer since your pull, pull again, re-check that file, and redo only what's affected.
@@ -179,5 +213,6 @@ dropped something that has an item in Groundwork, offer this step for those item
 - The inbox is empty, except for anything deliberately held back for a stated reason (e.g. waiting
   on the client to finish editing).
 - Every processed answer has a note in the project repo linking back to it.
+- Every page note with a thread has our approved reply on it, or a stated reason it needs none.
 - Decisions, open questions and the log are updated per the project's rules.
 - Nothing was published to the client without a yes.
