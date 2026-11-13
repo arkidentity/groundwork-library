@@ -26,6 +26,7 @@ CHANGELOG.md
 | `groundwork-outbox` | Draft and publish what goes to the client |
 | `groundwork-project` | Create or change a project from a template |
 | `church-website-discovery` | Run the website discovery rounds (optional) |
+| `shared-repo-sync` | Pull when a Claude session starts, remind to push when it ends (shared repos) |
 | `groundwork-setup` | Set up Groundwork for a new organization, from scratch (used once) |
 
 ## Using it

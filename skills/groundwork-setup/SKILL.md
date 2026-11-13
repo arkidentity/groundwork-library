@@ -137,8 +137,9 @@ git clone https://github.com/arkidentity/groundwork-library.git   # once, beside
 cd groundwork-library
 node scripts/sync-skills.mjs --repo ../<name> --commit
 ```
-That copies `groundwork-inbox`, `groundwork-outbox` and `groundwork-project` into
-`.claude/skills/`, stamped with the version. Push their repo afterward. To update later, run it
+That copies `groundwork-inbox`, `groundwork-outbox`, `groundwork-project` and `shared-repo-sync`
+into `.claude/skills/`, stamped with the version. Then turn on the pull/push hooks: follow
+`shared-repo-sync`'s "Turning it on in a repo". Push their repo afterward. To update later, run it
 again with `--upgrade`.
 
 ## Step 9. Sign in and look

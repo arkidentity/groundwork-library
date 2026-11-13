@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.14.0 (2026-11-03)
+- **New core skill `shared-repo-sync`:** two Claude Code hooks for repos our team and the client
+  both edit. A session start pulls from GitHub; the end of each reply warns about uncommitted or
+  unpushed work. Synced into every workspace repo; turned on per repo in `.claude/settings.json`
+  (the skill says how). `groundwork-setup` step 8 turns it on for new organizations.
+
 ## 0.13.0 (2026-10-17)
 - **Decided and dropped** (app support shipped 2026-10-17): items take `status: decided` with a
   one-line `decided:` and `settled: <date>`, or `status: dropped`. Clients see a Decided page;
