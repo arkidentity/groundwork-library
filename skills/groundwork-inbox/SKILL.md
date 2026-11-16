@@ -1,13 +1,105 @@
 ---
 name: groundwork-inbox
-description: Process a Groundwork client workspace inbox — read what the client sent through their Workspace (answers to questions, reviews, messages), file clean notes into the client's project repo, pull out decisions and open questions, draft follow-up questions, and lock the originals by moving them to processed/. Use when someone in a *-workspace repo says "process the inbox", "check the workspace", "what did <client> send", "anything new from <client>?", or after pulling new answers.
+description: Process a Groundwork inbox — read what a client or reviewer sent (page notes, answers to questions, messages), file clean notes into the project's repo, pull out decisions and open questions, draft replies and follow-ups, and mark items done. Works for both kinds of Groundwork project - database projects (agency, brand, project; read through the Groundwork connector or the repo copy in groundwork/) and older workspace repos (groundwork.yml, workspace/inbox, moved to processed/). Use when someone says "process the inbox", "check the workspace", "what did <client> send", "anything new from <project>?", "process the inbox for <project>", or after pulling new answers.
 ---
 
 # Groundwork Inbox
 
-Turns what a client sent through their Workspace into filed, usable notes, without ever changing their
-words. You run this from a client's **workspace repo** (e.g. `acme-workspace`). Notes go into the
-client's **project repo** (e.g. `acme`), which is the source of truth the team works from.
+Turns what a client or reviewer sent through Groundwork into filed, usable notes, without ever
+changing their words.
+
+## Step 0: which kind of project is this?
+
+Groundwork is organized **Agency → Brand → Project**. Find the project first.
+
+1. Look it up in the team's project map (a `PROJECTS.md` kept next to the team's other notes), or call the connector's
+   `list_workspaces`. Match on the project name or slug (for example "Website" or "Ads campaign").
+2. Pick the path:
+   - **Database project** (listed as a database project in the map, or it appears in
+     `list_workspaces`): there is **no `groundwork.yml`** and no `workspace/` folder. The Groundwork
+     database holds the notes. Follow **Database projects** below.
+   - **Older workspace repo** (a `*-workspace` or client repo with `groundwork.yml`): skip to
+     **Ground rules** and the numbered workflow. Everything from there on is the file-based flow.
+3. Not in the map and not in `list_workspaces`: stop and ask which project, and ask the person to add
+   it to `PROJECTS.md`. Don't guess a repo.
+
+## Database projects
+
+The project's notes live in Groundwork. A linked repo only gets a **copy** of each note; Groundwork
+stays the inbox, so nothing is lost if the repo link is removed.
+
+### Ways to read the inbox
+
+1. **The Groundwork connector (use this when it's connected).** Tools: `list_workspaces`,
+   `list_notes` (`workspace`, `status` defaults to not done, `limit`), `get_note` (spot, every reply,
+   photos), `reply`, `set_status` (open / answered / done). A key only reaches projects where its
+   person is on the team. If the tools aren't available, tell the person to connect once per
+   computer: groundwork.chat → Team → **Connect Claude Code** (`/connect`) → name the computer →
+   Make a key → paste the `claude mcp add ...` command it shows.
+2. **The repo copy (read-only fallback).** `<folder>/inbox/<note>.md` (+ `inbox/files/`) and
+   `<folder>/threads/<note>.md` in the project's repo, where `<folder>` is `groundwork`, or
+   `groundwork/<slug>` when two projects share a repo (see the project map). Pull the repo first. The
+   copy is written in the background and can lag or miss a note if a write failed, so say that you
+   read the copy, not the live inbox. Without the connector you cannot reply or set status.
+
+If neither works (no connector, no repo link, or no `groundwork/` folder yet), say so plainly and
+point to the dashboard. Don't invent notes.
+
+### What's different from the file-based flow
+
+- **No `processed/` and no `git mv`.** Never move or edit a file in `groundwork/inbox/` or
+  `groundwork/threads/`; they're a copy that Groundwork rewrites. A note is processed when it's filed
+  in the project's own notes **and** its status is `done` in Groundwork (`set_status`).
+- **"What's new"** is `list_notes` with the default status (not done). On the repo copy, read each
+  thread's `status:` and skip `done`; also skip notes already filed (look for the note id in the
+  project's filed notes, in the `Raw:` line).
+- **Editing `status:` in a repo thread file does nothing yet.** Status flows only through the
+  connector or the dashboard. Don't tell anyone it's saved if you only edited the copy.
+- **The `role` rule still holds.** Notes from a teammate (`role: team`, for example a teammate testing
+  their own site) are not the client speaking. File them as team input, and never in "What you've told
+  us". A team note about the app itself is feedback for whoever maintains the site, not a decision.
+- **`viewing:` is a web address.** Open it if you can; otherwise record what it was. There are no
+  `deliverable:` or `library:` pages for these projects.
+- **A note's thread is the conversation.** Read `get_note` (or the thread file) in full before
+  summarizing; a later reply may already answer or change the note.
+
+### Database workflow
+
+1. **Find and read.** `list_notes` for the project, then `get_note` for each (photos too). Or read
+   the repo copy. Empty: say so and stop.
+2. **Rundown first.** Before writing anything, tell the person who sent what, on which page or spot,
+   with the gist in a line or two, and flag anything sensitive under the project's `CLAUDE.md`.
+3. **File a note per item.** Put it where the project repo's `CLAUDE.md` says input belongs; if it
+   doesn't say, use `input/groundwork/YYYY-MM-DD-<short-slug>.md` in the project repo. Use the
+   note template under step 3 below, but put the note id and the dashboard link on the `Raw:` line
+   (`groundwork: <project> / <note id>`), and omit `Question:` (these are page notes, not answers
+   to assigned questions). Sensitive content the project forbids storing: stop and flag it. Don't
+   file it, and mention that the original is still in Groundwork and its repo copy.
+4. **Update the project's running files** (decisions, open questions, log) exactly as step 4 says.
+5. **Draft replies in chat; nothing is sent without a yes.** For each note that needs one, show a
+   short reply in the person's words. On a yes, call `reply`. Use `team_only` threads for team-only
+   conversation. Pick the status honestly: a question back to them → `answered`; nothing more
+   needed → `done`; something still owed to them → leave `open`.
+6. **Mark done.** After a note is filed (or set aside with a yes) and any reply is sent, call
+   `set_status` with `done`. Only for notes you handled. Show the list first.
+7. **Follow-up questions.** Draft them in chat, plain language, no jargon. Database projects can't
+   publish assigned questions from here yet (the connector has no create-item tool, and the repo
+   copy covers only inbox and threads). Give the person the final wording to add in the
+   Groundwork dashboard, and say that's what happened.
+8. **Commit the project repo** per its conventions, naming the notes filed and the ones set aside.
+   There is no workspace-repo commit and nothing to push for the inbox itself.
+
+**Done means:** every handled note is filed in the project's repo, has our approved reply (or a
+stated reason it needs none), is `done` in Groundwork, and decisions, open questions and the log
+follow the project's rules. Nothing was sent without a yes.
+
+---
+
+# File-based workspaces (older flow)
+
+For repos with `groundwork.yml` and `workspace/`. Turns what a client sent through their Workspace
+into filed notes. You run this from a client's **workspace repo** (e.g. `acme-workspace`). Notes go
+into the client's **project repo** (e.g. `acme`), which is the source of truth the team works from.
 
 The file rules are in `arkidentity/groundwork-library` → `docs/REPO-CONTRACT.md`. The short version is below.
 

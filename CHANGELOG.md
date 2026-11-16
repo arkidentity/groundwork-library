@@ -5,6 +5,15 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.16.0 (2026-11-16)
+- **`groundwork-inbox` knows database projects.** Groundwork is now Agency, Brand, Project, with
+  notes held in the database and no `groundwork.yml`. The skill adds a Step 0 (find the project in
+  the team's project map (`PROJECTS.md`) or the connector's `list_workspaces`) and a Database projects flow:
+  read through the Groundwork connector (or the read-only repo copy in `groundwork/`), file notes,
+  reply and `set_status` through the connector, no `processed/` move. The file-based flow is
+  unchanged below it. `groundwork-outbox`, `groundwork-project` and `groundwork-setup` still
+  assume the file-based flow; database projects cannot publish assigned questions from Claude yet.
+
 ## 0.15.0 (2026-11-13)
 - **Threads** (app support shipped 2026-11-12/13): a note left on a hosted page starts
   `workspace/threads/<note id>.md` with the spot, status (`open`/`answered`/`done`), `waiting_on`,
