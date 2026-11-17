@@ -12,6 +12,12 @@ updated on purpose (see README, "Updating an old project").
   many notes by page, spot and type. Follow-ups go on the note's thread with `waiting_on` the
   sender. Every app note now has a thread.
 
+## 0.20.1 (2026-11-17)
+- **`groundwork-inbox`: the connector's guide leads for database projects.** With the connector,
+  Claude calls `get_guide inbox` (or the `process_inbox` prompt), which groundwork.chat keeps
+  current, and this skill only adds the repo steps (filing notes, decisions, open questions, commit).
+  Teams with only the connector get the same workflow without the plugin.
+
 ## 0.20.0 (2026-11-17)
 - **New core skill `groundwork-connect`.** Ask Claude "help me connect Groundwork" and it walks
   through each screen: which Authentication and OAuth client options to pick, no headers, which tool

@@ -33,7 +33,8 @@ stays the inbox, so nothing is lost if the repo link is removed.
 1. **The Groundwork connector (use this when it's connected).** Tools: `list_workspaces`,
    `list_notes` (`workspace`, `status` defaults to not done, `limit`), `get_note` (spot, every reply,
    numbered files, the first 2 photos as previews), `get_photo` (one photo by file number), `reply`,
-   `set_status` (open / answered / done). It only reaches projects where the signed-in person is on
+   `set_status` (open / answered / done), `get_guide` (the current workflow and reply rules). It
+   only reaches projects where the signed-in person is on
    the team. If the tools aren't available, tell the person to add it once: in Claude, Settings →
    Connectors → Add custom connector → `https://groundwork.chat/api/mcp` → Connect → sign in with
    the emailed code → Allow. In a terminal: `claude mcp add --transport http --scope user groundwork
@@ -68,6 +69,12 @@ point to the dashboard. Don't invent notes.
   summarizing; a later reply may already answer or change the note.
 
 ### Database workflow
+
+**With the connector, its guide leads.** Call `get_guide` with topic `inbox` (or start from the
+connector's `process_inbox` prompt) and follow it for reading, the rundown, replies and marking done.
+That guide is served by groundwork.chat, so it's always current; the rules aren't repeated here.
+This skill adds what needs the repo: steps 3, 4 and 8 below, done between the guide's rundown and its
+"mark done" step. Without the connector (repo copy only), follow all the steps below.
 
 1. **Find and read.** `list_notes` for the project, then `get_note` for each (photos too). Or read
    the repo copy. Empty: say so and stop.
