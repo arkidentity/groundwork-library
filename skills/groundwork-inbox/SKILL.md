@@ -32,10 +32,13 @@ stays the inbox, so nothing is lost if the repo link is removed.
 
 1. **The Groundwork connector (use this when it's connected).** Tools: `list_workspaces`,
    `list_notes` (`workspace`, `status` defaults to not done, `limit`), `get_note` (spot, every reply,
-   photos), `reply`, `set_status` (open / answered / done). A key only reaches projects where its
-   person is on the team. If the tools aren't available, tell the person to connect once per
-   computer: groundwork.chat → Team → **Connect Claude Code** (`/connect`) → name the computer →
-   Make a key → paste the `claude mcp add ...` command it shows.
+   numbered files, the first 2 photos as previews), `get_photo` (one photo by file number), `reply`,
+   `set_status` (open / answered / done). It only reaches projects where the signed-in person is on
+   the team. If the tools aren't available, tell the person to add it once: in Claude, Settings →
+   Connectors → Add custom connector → `https://groundwork.chat/api/mcp` → Connect → sign in with
+   the emailed code → Allow. In a terminal: `claude mcp add --transport http --scope user groundwork
+   https://groundwork.chat/api/mcp`, then `/mcp` → Authenticate. groundwork.chat → Team → **Connect
+   Claude** (`/connect`) shows both, and keys for computers that can't sign in.
 2. **The repo copy (read-only fallback).** `<folder>/inbox/<note>.md` (+ `inbox/files/`) and
    `<folder>/threads/<note>.md` in the project's repo, where `<folder>` is `groundwork`, or
    `groundwork/<slug>` when two projects share a repo (see the project map). Pull the repo first. The

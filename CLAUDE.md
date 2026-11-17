@@ -6,7 +6,7 @@ isn't clear.
 ## 1. Joining a team that uses Groundwork ("set me up", "install groundwork", "get started")
 
 They don't need this library. Tell them, briefly, to get the plugin the normal way: on
-groundwork.chat → Team → **Connect Claude Code**, download `groundwork.zip` and upload it in Claude
+groundwork.chat → Team → **Connect Claude**, download `groundwork.zip` and upload it in Claude
 desktop (Settings → Customize → Plugins → Upload). [START.md](START.md) has the same steps and the
 terminal route. Don't walk them through a longer setup from here, and never ask for a key or token.
 

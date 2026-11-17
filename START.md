@@ -38,10 +38,21 @@ The plugin and the connector are separate, and the order doesn't matter.
 
 ## 2. Connect Groundwork (optional)
 
-1. Sign in at https://groundwork.chat → **Team → Connect Claude Code** → name this computer →
-   **Make a key**.
-2. Add it the way that page shows. The key belongs to you and this one computer. Never paste it
-   into a file or a repo.
+**From Claude (desktop, claude.ai or mobile), no key:**
+1. Claude → **Settings → Connectors → Add custom connector**. Name it Groundwork and paste
+   `https://groundwork.chat/api/mcp`.
+2. Leave sign-in on **Sign in now** and **Use Claude's published identity**, and add no headers.
+3. Click **Connect**, sign in to Groundwork with the 6-digit code it emails you, and click **Allow**.
+
+It follows your Claude account, so you do this once, not per computer. You can turn it off at
+groundwork.chat → **Team → Connect Claude**. If your organization's Owner already added it for
+everyone, just click **Connect** next to Groundwork in Settings → Connectors.
+
+**Or from a terminal (Claude Code):** run
+`claude mcp add --transport http --scope user groundwork https://groundwork.chat/api/mcp`, then type
+`/mcp` in Claude Code and choose Authenticate. On a computer that can't sign in through a browser,
+make a key instead at groundwork.chat → **Team → Connect Claude**. A key belongs to you and that one
+computer; never paste it into a file or a repo.
 
 ## 3. Get your project's repo (if you'll work in files)
 

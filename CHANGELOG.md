@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.19.3 (2026-11-17)
+- **Connect Groundwork by signing in, no key.** START.md and `groundwork-inbox` now say to add
+  `https://groundwork.chat/api/mcp` as a custom connector in Claude (or `claude mcp add` + `/mcp` in
+  a terminal) and sign in. Keys remain for computers that can't sign in. The inbox skill knows
+  `get_photo`. The page on groundwork.chat is now called **Connect Claude**.
+
 ## 0.19.2 (2026-11-17)
 - **Fix: the plugin zip now uploads in Claude desktop.** The upload rejected skill descriptions
   containing `<client>`-style placeholders (it reads them as XML tags). Descriptions use
