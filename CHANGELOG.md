@@ -5,6 +5,11 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.18.0 (2026-11-17)
+- **New skill `groundwork-brand-capture`.** Measures a client's live website (computed fonts,
+  colors, section bands, buttons, layout), downloads the real logo, and writes
+  `_shared/brand.css` so Groundwork pages match the client's site. Run it when onboarding a client.
+
 ## 0.17.0 (2026-11-17)
 - **`groundwork-outbox` makes pages for database projects.** Groundwork now hosts branded pages
   from a linked repo's `groundwork/pages/<slug>/` (`index.html` + `deliverable.yml`), like
