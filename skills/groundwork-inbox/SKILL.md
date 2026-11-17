@@ -1,6 +1,6 @@
 ---
 name: groundwork-inbox
-description: Process a Groundwork inbox — read what a client or reviewer sent (page notes, answers to questions, messages), file clean notes into the project's repo, pull out decisions and open questions, draft replies and follow-ups, and mark items done. Works for both kinds of Groundwork project - database projects (agency, brand, project; read through the Groundwork connector or the repo copy in groundwork/) and older workspace repos (groundwork.yml, workspace/inbox, moved to processed/). Use when someone says "process the inbox", "check the workspace", "what did <client> send", "anything new from <project>?", "process the inbox for <project>", or after pulling new answers.
+description: Process a Groundwork inbox — read what a client or reviewer sent (page notes, answers to questions, messages), file clean notes into the project's repo, pull out decisions and open questions, draft replies and follow-ups, and mark items done. Works for both kinds of Groundwork project - database projects (agency, brand, project; read through the Groundwork connector or the repo copy in groundwork/) and older workspace repos (groundwork.yml, workspace/inbox, moved to processed/). Use when someone says "process the inbox", "check the workspace", "what did [client] send", "anything new from [project]?", "process the inbox for [project]", or after pulling new answers.
 ---
 
 # Groundwork Inbox

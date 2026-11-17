@@ -139,6 +139,8 @@ for (const s of dirs(join(ROOT, 'skills'))) {
   }
   if (data.name !== s) err(rel(path), `name "${data.name}" must equal the folder name "${s}"`)
   if (typeof data.description !== 'string' || data.description.length < 40) err(rel(path), 'description is missing or too short to trigger on')
+  // Claude desktop's plugin upload rejects "<" or ">" in a description (it reads them as XML tags).
+  else if (/[<>]/.test(data.description)) err(rel(path), 'description contains "<" or ">"; use [placeholder] instead of <placeholder>')
   const text = read(path)
   if (/templates\/projects/.test(text)) err(rel(path), 'refers to the old templates/projects/ path (now templates/)')
   for (const ref of text.matchAll(/`templates\/([\w-]+)(?![\w.-])/g)) {

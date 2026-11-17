@@ -5,6 +5,11 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.19.2 (2026-11-17)
+- **Fix: the plugin zip now uploads in Claude desktop.** The upload rejected skill descriptions
+  containing `<client>`-style placeholders (it reads them as XML tags). Descriptions use
+  `[client]` instead, and `npm run validate` now fails on `<` or `>` in a description.
+
 ## 0.19.1 (2026-11-17)
 - **Add the plugin from Claude desktop, no terminal.** Each release now attaches `groundwork.zip`
   (and a zip per optional plugin) to the GitHub release; upload it under Settings → Customize →

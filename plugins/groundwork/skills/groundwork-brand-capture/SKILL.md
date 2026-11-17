@@ -1,6 +1,6 @@
 ---
 name: groundwork-brand-capture
-description: Capture a client's brand from their live website and turn it into the shared stylesheet their Groundwork pages use, so every branded page looks like the client's own site. Use when onboarding a new client, or when someone says "capture <client>'s brand", "match their website", "brand the pages like their site", "rebrand the Groundwork pages", or "the pages don't look like <client>". Writes `_shared/brand.css` (plus the logo) in the client's repo; `groundwork-outbox` then builds pages on it.
+description: Capture a client's brand from their live website and turn it into the shared stylesheet their Groundwork pages use, so every branded page looks like the client's own site. Use when onboarding a new client, or when someone says "capture [client]'s brand", "match their website", "brand the pages like their site", "rebrand the Groundwork pages", or "the pages don't look like [client]". Writes `_shared/brand.css` (plus the logo) in the client's repo; `groundwork-outbox` then builds pages on it.
 ---
 
 # Groundwork Brand Capture
