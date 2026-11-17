@@ -5,18 +5,10 @@ isn't clear.
 
 ## 1. Joining a team that uses Groundwork ("set me up", "install groundwork", "get started")
 
-Walk them through [START.md](START.md), **one step at a time**: say what the step is for in a
-sentence, tell them exactly what to click, wait for them to confirm it worked, then move on. They
-may not know git or the terminal, so use plain words and prefer the Claude desktop route.
-
-- You can't click through Claude's Settings for them. Guide them, then check.
-- Step 1: the plugin is `groundwork.zip` from the latest release. If they cloned or downloaded this
-  library, there is no zip in it; send them to the download link in START.md.
-- After the plugin is added, it only loads in a **new** session. Ask them to start one and ask
-  "list your groundwork skills"; if the skills are already available in this session, check them
-  yourself.
-- Never ask for, read out, or write down a connector key, password or token.
-- When they're done, tell them what they set up and what they skipped (for example the connector).
+They don't need this library. Tell them, briefly, to get the plugin the normal way: on
+groundwork.chat → Team → **Connect Claude Code**, download `groundwork.zip` and upload it in Claude
+desktop (Settings → Customize → Plugins → Upload). [START.md](START.md) has the same steps and the
+terminal route. Don't walk them through a longer setup from here, and never ask for a key or token.
 
 ## 2. Starting Groundwork for a new organization ("set up groundwork for my church/team")
 

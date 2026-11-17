@@ -6,9 +6,7 @@ different job: see [GETTING-STARTED.md](GETTING-STARTED.md).
 
 You need the **Claude desktop app**. GitHub is only needed if you'll work in a project's repo.
 
-> **The easy way:** download this library (green **Code** button → **Download ZIP**, or clone it),
-> open the folder in the Claude desktop app's **Code** tab, and say **"set me up."** Claude walks you
-> through the steps below one at a time.
+You don't need to download this library. The plugin is one file, `groundwork.zip` (step 1).
 
 ## The pieces
 
