@@ -72,9 +72,10 @@ point to the dashboard. Don't invent notes.
 
 **With the connector, its guide leads.** Call `get_guide` with topic `inbox` (or start from the
 connector's `process_inbox` prompt) and follow it for reading, the rundown, replies and marking done.
-That guide is served by groundwork.chat, so it's always current; the rules aren't repeated here.
-This skill adds what needs the repo: steps 3, 4 and 8 below, done between the guide's rundown and its
-"mark done" step. Without the connector (repo copy only), follow all the steps below.
+That guide is served by groundwork.chat, so it's always current. This skill adds two things on top:
+the `kind` rule and sorting many notes (step 1 "Who left it" and step 2a of the file-based flow,
+which apply here too), and what needs the repo: steps 3, 4 and 8 below, done between the guide's
+rundown and its "mark done" step. Without the connector (repo copy only), follow all the steps below.
 
 1. **Find and read.** `list_notes` for the project, then `get_note` for each (photos too). Or read
    the repo copy. Empty: say so and stop.
