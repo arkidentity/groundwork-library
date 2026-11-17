@@ -35,7 +35,7 @@ const plugins = [
   {
     name: 'groundwork',
     skills: core,
-    description: 'Core Groundwork skills: file client notes (inbox), prepare questions and branded pages (outbox), start projects, capture a client brand, and keep the shared repo in sync.',
+    description: 'Core Groundwork skills: connect Claude to Groundwork, file client notes (inbox), prepare questions and branded pages (outbox), start projects, capture a client brand, and keep the shared repo in sync.',
   },
   ...optional.map((name) => ({ name, skills: [name], description: short(desc(name)) })),
 ]

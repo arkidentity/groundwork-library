@@ -1,7 +1,7 @@
 # Groundwork library index. Bump `version` on every release and tag it (vX.Y.Z).
 name: groundwork-library
 source: arkidentity/groundwork-library   # owner/repo on GitHub; what workspaces put in `libraries:`
-version: 0.19.3
+version: 0.20.0
 contract: 3            # the workspace contract these templates and skills were written for
                        # (docs/REPO-CONTRACT.md in this repo)
 
@@ -35,6 +35,7 @@ skills:
   - {name: groundwork-project, core: true}
   - {name: shared-repo-sync, core: true}
   - {name: groundwork-brand-capture, core: true}
+  - {name: groundwork-connect, core: true}
   # optional: synced only into repos that already have it (or where you pass --add)
   - {name: church-website-discovery, core: false}
   # setup: used once, from a clone of this library, to start a new organization (not synced)

@@ -48,6 +48,28 @@ It follows your Claude account, so you do this once, not per computer. You can t
 groundwork.chat → **Team → Connect Claude**. If your organization's Owner already added it for
 everyone, just click **Connect** next to Groundwork in Settings → Connectors.
 
+With the plugin added, you can also just ask Claude: *"Help me connect Groundwork."* It walks you
+through each screen.
+
+### Questions you'll hit while connecting
+
+| Screen | Pick | Why |
+|---|---|---|
+| Authentication | **Sign in now** | Every Groundwork tool needs an account. |
+| OAuth client | **Use Claude's published identity** (shows "Detected") | Groundwork supports it; nothing to set up. |
+| Request headers | **Leave empty** | Signing in replaces keys. Never paste a key here. |
+| Tool permissions: Get note, Get photo, List notes, List workspaces | **Always allow** | They only read. |
+| Tool permissions: Reply, Set status | **Needs approval** | Clients see replies (and may get an email or Slack message), so read them first. |
+
+- **Adding it for your whole organization?** Adding it under your own Settings connects only you,
+  even if you're the Owner. For everyone, the Owner uses Organization settings → Connectors → Add →
+  Custom → Web with the same choices. Each person then clicks Connect and signs in as themselves.
+  Its sign-in settings can't be changed afterwards, so get it working for one person first.
+- **No code email?** Check spam. Codes only go to people who are team on a Groundwork workspace, at
+  most 3 per 15 minutes, and last 10 minutes. Type the code on the same page that asked for it.
+- **"Connector is for team members"?** You're a client on that workspace. Clients leave notes on
+  the site instead.
+
 **Or from a terminal (Claude Code):** run
 `claude mcp add --transport http --scope user groundwork https://groundwork.chat/api/mcp`, then type
 `/mcp` in Claude Code and choose Authenticate. On a computer that can't sign in through a browser,
@@ -64,7 +86,7 @@ computer; never paste it into a file or a repo.
 ## 4. Check it works
 
 Start a **new** session in the Code tab and ask:
-1. *"List your groundwork skills."* Claude should name five: groundwork-inbox, groundwork-outbox,
+1. *"List your groundwork skills."* Claude should name six: groundwork-connect, groundwork-inbox, groundwork-outbox,
    groundwork-project, groundwork-brand-capture and shared-repo-sync.
 2. In your project's repo: *"Make a Groundwork page about [something small]."* After you push, it
    should show on the project's Home in groundwork.chat within about a minute.

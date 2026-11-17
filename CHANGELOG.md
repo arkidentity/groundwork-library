@@ -5,6 +5,13 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.20.0 (2026-11-17)
+- **New core skill `groundwork-connect`.** Ask Claude "help me connect Groundwork" and it walks
+  through each screen: which Authentication and OAuth client options to pick, no headers, which tool
+  permissions to allow, the emailed code, adding it for a whole organization (adding it for yourself
+  connects only you), the terminal route, and what to do when something fails.
+- START.md gains "Questions you'll hit while connecting".
+
 ## 0.19.3 (2026-11-17)
 - **Connect Groundwork by signing in, no key.** START.md and `groundwork-inbox` now say to add
   `https://groundwork.chat/api/mcp` as a custom connector in Claude (or `claude mcp add` + `/mcp` in
