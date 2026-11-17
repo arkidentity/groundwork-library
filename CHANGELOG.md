@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.19.1 (2026-11-17)
+- **Add the plugin from Claude desktop, no terminal.** Each release now attaches `groundwork.zip`
+  (and a zip per optional plugin) to the GitHub release; upload it under Settings → Customize →
+  Plugins. New [START.md](START.md) walks someone joining a team through setup, and the library's
+  new `CLAUDE.md` has Claude guide them step by step. Uploaded copies don't update themselves.
+
 ## 0.19.0 (2026-11-17)
 - **The library is now a Claude Code plugin marketplace.** Install the `groundwork` plugin
   (all core skills) instead of copying skills into each repo; optional skills are their own
