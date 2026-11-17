@@ -21,10 +21,15 @@ Files: `brand.css` and the logo (`<client>-logo.png` or `.svg`). Pages link it w
 
 1. **Open the site** in a browser (built-in browser, or Claude in Chrome). Read the home page and one
    inner page. Public pages only; never sign in to anything for this.
-2. **Measure computed styles** with one script, not by eye. For `body`, every visible `h1`–`h4`, `p`,
-   buttons/CTA links, and each full-width section wrapper, collect: font-family, size, weight,
-   letter-spacing, text-transform, color, background-color, border-radius, padding, text-align.
-   Read the output in slices if it's long.
+2. **Measure what is visible, not wrappers.** Page builders (Go High Level, Wix, Squarespace) put
+   styles on hidden parent elements that the real text overrides. Read colors and fonts from **leaf
+   elements that have visible text**, never from an h1/h2 wrapper. For each top-level section, in
+   page order, record: its background color (or image), and the color, font and size of its first
+   few visible text leaves. Read the output in slices if it's long.
+   - **Record the section rhythm**, e.g. white, black, green, white, gray, navy. Brand pages must
+     alternate bands the same way; an all-white page is not on brand.
+   - **Only use a color you saw on screen.** Before keeping a color, check it in a screenshot. If
+     a value appears only in computed styles of something you can't see, drop it.
 3. **Get the real logo.** Find the header `<img>` (or inline SVG) and download it into `_shared/`.
    Note whether it's dark-on-transparent or light, so you know which backgrounds it can sit on. Never
    redraw a logo in CSS or type.
@@ -37,7 +42,8 @@ Files: `brand.css` and the logo (`<client>-logo.png` or `.svg`). Pages link it w
    - Layout habits: centered or left, how wide, hero style (photo, solid, white).
    - Light or dark. If the site is light-only, make the pages light-only (`color-scheme: light`,
      explicit backgrounds) rather than inventing a dark mode.
-5. **Write `brand.css`** with tokens on `:root` (`--bg --fg --muted --surface --line --accent
+5. **Write `brand.css`**. Give each band its own class that resets `--fg --muted --line --card --tag`
+   so the same page markup reads correctly on light and dark bands. Tokens on `:root` (`--bg --fg --muted --card --line --tag --accent
    --on-accent --display --font --radius --max`, plus brand colors) and reusable classes:
    `.<x>-wrap`, `.<x>-band` (hero), `.<x>-brand` (logo link), `.<x>-section`, `.<x>-eyebrow`,
    `.<x>-label`, one class per section band (`.<x>-green`, `.<x>-black` …), `.<x>-btn`. `<x>` is a

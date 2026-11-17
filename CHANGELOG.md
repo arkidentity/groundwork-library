@@ -5,6 +5,11 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.18.1 (2026-11-17)
+- **`groundwork-brand-capture`:** read colors from visible text, not wrappers (page builders hide
+  styles on parents); record the section-band rhythm; only keep colors seen on screen; band classes
+  reset the color tokens.
+
 ## 0.18.0 (2026-11-17)
 - **New skill `groundwork-brand-capture`.** Measures a client's live website (computed fonts,
   colors, section bands, buttons, layout), downloads the real logo, and writes
