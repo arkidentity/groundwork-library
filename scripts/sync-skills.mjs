@@ -27,7 +27,7 @@
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
-import { dirname, join, relative, resolve } from 'node:path'
+import { basename, dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const LIB = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -152,7 +152,7 @@ let skipped = 0
 let pinSkipped = 0
 
 for (const repo of repos) {
-  const name = repo.split('/').pop()
+  const name = basename(resolve(repo)) // not split('/'): Windows paths use backslashes
   if (!existsSync(join(repo, 'groundwork.yml'))) {
     console.log(`\n${name}: no groundwork.yml, skipped`)
     continue
