@@ -1,6 +1,8 @@
 # groundwork-library
 
-**New to Groundwork?** Start with [GETTING-STARTED.md](GETTING-STARTED.md).
+**Joining a team that uses Groundwork?** Start with [START.md](START.md): add the plugin in Claude
+desktop, no terminal needed. **Starting Groundwork for a new organization?** See
+[GETTING-STARTED.md](GETTING-STARTED.md).
 
 Templates and skills for Groundwork client workspaces, versioned in one place. The app
 (`arkidentity/groundwork`) never reads this repo; only people and skills do, when they start a
@@ -48,6 +50,10 @@ as `/groundwork:<skill>`.
   "enabledPlugins": { "groundwork@groundwork-library": true }
 }
 ```
+
+**In Claude desktop**, which doesn't show that prompt: upload `groundwork.zip` from the
+[latest release](https://github.com/arkidentity/groundwork-library/releases/latest) under Settings →
+Customize → Plugins (see [START.md](START.md)). Uploaded copies don't update themselves.
 
 Or by hand: `/plugin marketplace add arkidentity/groundwork-library`, then
 `/plugin install groundwork@groundwork-library`. Optional skills are their own plugins
@@ -138,7 +144,9 @@ version. A release tag must equal the version in `library.yml`.
 2. Bump `version` in `library.yml`, then run `npm run build:plugins` (CI fails if `plugins/` is stale) (and a template's own `version` if it changed). Semver: patch =
    wording, minor = new template/question/skill/optional field, major = anything that changes ids,
    layout, or the contract version a workspace needs.
-3. Wait for CI to pass, then `git tag vX.Y.Z` and push with tags (CI checks the tag matches).
+3. Wait for CI to pass, then `git tag vX.Y.Z` and push with tags (CI checks the tag matches). The
+   tag also runs `.github/workflows/release.yml`, which attaches `groundwork.zip` (and a zip per
+   optional plugin) to the GitHub release for people who add the plugin in Claude desktop.
 4. Nothing changes for any workspace yet. To roll a release out to a client, check out the tag and run
    `sync-skills.mjs --upgrade --commit` for that repo (`--repo ../client-workspace`), review, push.
 

@@ -1,5 +1,8 @@
 # Getting started with Groundwork
 
+> This page is for starting Groundwork **for a new organization**. If someone already added you
+> to their Groundwork team, follow [START.md](START.md) instead.
+
 Groundwork is a simple way to gather answers from the people you work with (your elders, a client,
 volunteers) without long forms or email threads. They see a few questions at a time and answer by
 talking or typing. Their answers land in a private GitHub repo, where Claude helps you file them and
