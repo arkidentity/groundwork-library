@@ -5,6 +5,13 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.21.0 (2026-11-17)
+- **Notes triage in `groundwork-inbox`.** Notes now carry the sender's roster `kind:` (decides,
+  team, tester) and an optional `type:` (bug, wording, design, question, idea). Only `decides`
+  notes can become decisions; team and tester notes become to-dos and bug lists. New step 2a sorts
+  many notes by page, spot and type. Follow-ups go on the note's thread with `waiting_on` the
+  sender. Every app note now has a thread.
+
 ## 0.20.0 (2026-11-17)
 - **New core skill `groundwork-connect`.** Ask Claude "help me connect Groundwork" and it walks
   through each screen: which Authentication and OAuth client options to pick, no headers, which tool

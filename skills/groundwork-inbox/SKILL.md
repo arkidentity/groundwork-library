@@ -58,9 +58,10 @@ point to the dashboard. Don't invent notes.
   project's filed notes, in the `Raw:` line).
 - **Editing `status:` in a repo thread file does nothing yet.** Status flows only through the
   connector or the dashboard. Don't tell anyone it's saved if you only edited the copy.
-- **The `role` rule still holds.** Notes from a teammate (`role: team`, for example a teammate testing
-  their own site) are not the client speaking. File them as team input, and never in "What you've told
-  us". A team note about the app itself is feedback for whoever maintains the site, not a decision.
+- **The `kind` rule still holds** (see "Who left it" in step 1). Only `kind: decides` notes can become
+  decisions. Notes from a teammate (`kind: team`, or `role: team` on older notes) or a tester are not
+  the client deciding: they become to-dos or a bug list, never "What you've told us". A team note
+  about the app itself is feedback for whoever maintains the site, not a decision.
 - **`viewing:` is a web address.** Open it if you can; otherwise record what it was. There are no
   `deliverable:` or `library:` pages for these projects.
 - **A note's thread is the conversation.** Read `get_note` (or the thread file) in full before
@@ -151,6 +152,23 @@ For each file, read the frontmatter and text:
   teammate answering what we asked them. File it as their input in the project (log, open
   questions, the spec it's about), and say what it means for the client version of the item.
 
+**Who left it (the roster).** Notes from 2026-11-17 on carry `kind:` (on the inbox file and its
+thread), set from the project's roster:
+- `decides`: a client person the team marked as a decision-maker (People screen; `(decides)` after
+  their entry in `groundwork.yml`, or approver on a database project). **Only these notes can
+  become decisions** or go in "What you've told us".
+- `team`: one of us. Team input, a to-do, or a bug for whoever builds the app; never a decision.
+- `tester`: everyone else (client staff not marked as deciding, testers, unknown names). Their notes
+  become to-dos and bug lists. If a tester's note asks for a real decision, list it as an open
+  question for a decision-maker instead of filing it as decided.
+Older notes have no `kind:`: work it out the same way (a name on `team:` is team, even when
+`role: client` was stamped by mistake; a `people:` entry tagged `(decides)` decides; anyone else is a tester).
+
+**What kind of note (`type:`).** `bug`, `wording`, `design`, `question` or `idea`, when the sender
+picked one. When there's none, decide it yourself and set `type:` on the thread when you reply (the
+Notes view groups by it). A brain dump that mixes several types is several items: split it in your
+rundown.
+
 An item with `prompts` asks several questions at once. The answer's `covered` lists the ones the
 client ticked, but read the whole answer: people cover things they didn't tick and skip things
 they did. File one note per item with a section per prompt, and list any prompt left unanswered
@@ -177,6 +195,17 @@ notes by topic when that reads better.
 
 Voice answers are raw speech-to-text: filler words, run-ons, misheard words. Read for meaning. When you
 quote, keep their words but fix obvious transcription errors, and mark anything you're unsure of `[?]`.
+
+### 2a. Sort many notes
+When there are more than a handful of page notes (bug testing with many testers), don't file them
+one by one. Group them by page, then by spot, then by type, and lead the rundown with counts:
+"Film C: 3 bugs from 2 people, 1 wording fix". Then:
+- **bugs** → one bug list per page (a checklist in the project, or the app's issue list if it has
+  one), each line with who saw it, the spot, and a link to the raw note;
+- **wording** and **design** from team or testers → to-dos on that page;
+- **questions** → answer on the thread (step 3c), or ask the sender a follow-up there;
+- **ideas** → a short ideas list; only a decision-maker's idea that they say they want is a decision.
+Duplicates (the same bug from two people) become one line naming both.
 
 ### 2. Show the person you're working with
 Before writing anything, give a short rundown: who sent what, about which question, and the gist in a
@@ -239,10 +268,13 @@ Got it. We moved the service time to the bottom line in draft 4.
 
 - The name is the person you're working with, plus ` (team)`; the time is now, in UTC ISO.
 - Then set the frontmatter the way a team reply in the app would, unless they say otherwise:
-  - a question back to the client: `status: answered`, `waiting_on: <their first name or email>`;
+  - a question back to the sender (client, tester or teammate): `status: answered`,
+    `waiting_on: <their first name or email>`; the note then waits on them, and they see it from the
+    Note button. This is how to follow up on an unclear note: ask on its thread, don't guess;
   - nothing more needed from anyone: `status: done`, `waiting_on: ""`;
   - we still owe them something: leave `status: open`, `waiting_on: team`.
-- Change only `status`, `waiting_on` and the new `###` block. Never edit an earlier reply, the
+- Set `type:` if the note had none (see step 1).
+- Change only `status`, `waiting_on`, `type` and the new `###` block. Never edit an earlier reply, the
   first message or `spot`. Never write to a thread that doesn't exist; a note without one (an
   answer to an item, a message from Home) gets its follow-up through step 5 instead.
 - A thread that's already settled in the app (`done`, or the last reply is ours and says enough)
