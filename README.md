@@ -36,7 +36,27 @@ finds the library version the workspace is pinned to (see Pins), copies the temp
 and stamps `from_template: <name>@<template version>` and `template_library: <source>@<ref>` on the
 project. After that the project belongs to the client; template releases never change it.
 
-**Skills:** copy them into workspace repos with the sync script, from this repo:
+**Skills, as a plugin (Claude Code, recommended):** add this to the repo's `.claude/settings.json` and
+commit it. Each teammate who opens the repo and trusts the folder is offered the plugin; skills show up
+as `/groundwork:<skill>`.
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "groundwork-library": { "source": { "source": "github", "repo": "arkidentity/groundwork-library" } }
+  },
+  "enabledPlugins": { "groundwork@groundwork-library": true }
+}
+```
+
+Or by hand: `/plugin marketplace add arkidentity/groundwork-library`, then
+`/plugin install groundwork@groundwork-library`. Optional skills are their own plugins
+(`church-website-discovery@groundwork-library`). Plugin versions follow `library.yml`, so an install
+only changes on a release; turn on auto-update for the marketplace in `/plugin` → Marketplaces, or
+run `/plugin marketplace update groundwork-library`. If a repo has both the plugin and synced copies,
+delete the copies in `.claude/skills/` so each skill exists once.
+
+**Skills, as copies (other agents, or files committed in the repo):** use the sync script, from this repo:
 
 ```bash
 node scripts/sync-skills.mjs --dry-run        # see the plan for every repo under ../
@@ -105,7 +125,7 @@ Business Made Simple, and the questions are original. The file format the skills
 ```bash
 npm ci
 npm run validate   # the whole library: index, templates, skills, question bank, changelog
-npm test           # validate + the validator's own tests + the sync script's tests
+npm test           # plugins up to date + validate + the validator's and sync script's tests
 ```
 GitHub Actions runs both, plus a client-name guard (`scripts/check-denylist.mjs`, pattern from the `DENYLIST_REGEX` secret), on every push and pull request, and on tags. The validator checks that every
 template has a matching `template.yml`, every `{{placeholder}}` is declared, every item's frontmatter
@@ -114,8 +134,8 @@ versions agree across `library.yml` and each template, and the changelog mention
 version. A release tag must equal the version in `library.yml`.
 
 ## Releasing
-1. Edit a template or skill. Add a line to `CHANGELOG.md`.
-2. Bump `version` in `library.yml` (and a template's own `version` if it changed). Semver: patch =
+1. Edit a template or skill in `skills/` (never in `plugins/`). Add a line to `CHANGELOG.md`.
+2. Bump `version` in `library.yml`, then run `npm run build:plugins` (CI fails if `plugins/` is stale) (and a template's own `version` if it changed). Semver: patch =
    wording, minor = new template/question/skill/optional field, major = anything that changes ids,
    layout, or the contract version a workspace needs.
 3. Wait for CI to pass, then `git tag vX.Y.Z` and push with tags (CI checks the tag matches).
@@ -123,5 +143,5 @@ version. A release tag must equal the version in `library.yml`.
    `sync-skills.mjs --upgrade --commit` for that repo (`--repo ../client-workspace`), review, push.
 
 ## Not built yet
-- Distributing skills as a Claude Code plugin, so the copies in each repo can go away.
+- Sync script: database-project repos, Codex folder, AGENTS.md (see the distribution plan).
 - Org libraries (a church or another company's own template repo, layered over this one).

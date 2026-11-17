@@ -1,0 +1,17 @@
+{
+  "name": "church-website-discovery",
+  "version": "0.19.0",
+  "description": "Run the information-gathering process for a church website — prefill what we can from their site, calls and listings, write it into content/ as unconfirmed, draft the round-1 confirms, turn the…",
+  "author": {
+    "name": "Groundwork",
+    "url": "https://groundwork.chat"
+  },
+  "homepage": "https://groundwork.chat",
+  "repository": "https://github.com/arkidentity/groundwork-library",
+  "license": "MIT",
+  "keywords": [
+    "groundwork",
+    "agency",
+    "client-feedback"
+  ]
+}

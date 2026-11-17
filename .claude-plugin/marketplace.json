@@ -1,0 +1,22 @@
+{
+  "name": "groundwork-library",
+  "owner": {
+    "name": "Groundwork",
+    "url": "https://groundwork.chat"
+  },
+  "description": "Groundwork skills for agencies and teams. Install the groundwork plugin; add optional skills as needed.",
+  "plugins": [
+    {
+      "name": "groundwork",
+      "source": "./plugins/groundwork",
+      "description": "Core Groundwork skills: file client notes (inbox), prepare questions and branded pages (outbox), start projects, capture a client brand, and keep the shared repo in sync.",
+      "category": "productivity"
+    },
+    {
+      "name": "church-website-discovery",
+      "source": "./plugins/church-website-discovery",
+      "description": "Run the information-gathering process for a church website — prefill what we can from their site, calls and listings, write it into content/ as unconfirmed, draft the round-1 confirms, turn the…",
+      "category": "productivity"
+    }
+  ]
+}

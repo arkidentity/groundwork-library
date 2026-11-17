@@ -5,6 +5,13 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.19.0 (2026-11-17)
+- **The library is now a Claude Code plugin marketplace.** Install the `groundwork` plugin
+  (all core skills) instead of copying skills into each repo; optional skills are their own
+  plugins. **For agencies:** nothing changes unless you switch; synced copies keep working. To
+  switch, see "Install as a plugin" in the README. Skills are still edited in `skills/`;
+  `npm run build:plugins` regenerates `plugins/`, and CI fails if it is stale.
+
 ## 0.18.1 (2026-11-17)
 - **`groundwork-brand-capture`:** read colors from visible text, not wrappers (page builders hide
   styles on parents); record the section-band rhythm; only keep colors seen on screen; band classes

@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node scripts/validate.mjs && node scripts/test-validate.mjs && node scripts/test-sync.mjs && node scripts/test-resolve.mjs && node scripts/test-diff.mjs && node scripts/test-denylist.mjs",
-    "denylist": "node scripts/check-denylist.mjs"
+    "test": "node scripts/build-plugins.mjs --check && node scripts/validate.mjs && node scripts/test-validate.mjs && node scripts/test-sync.mjs && node scripts/test-resolve.mjs && node scripts/test-diff.mjs && node scripts/test-denylist.mjs",
+    "denylist": "node scripts/check-denylist.mjs",
+    "build:plugins": "node scripts/build-plugins.mjs"
   },
   "dependencies": {
     "yaml": "^2.8.0"
