@@ -1,6 +1,6 @@
 ---
 name: groundwork-outbox
-description: Start onboarding a new messaging/marketing client, or prepare what goes out to a Groundwork client — read the client's project repo (open questions, recent logs, specs, shared pages), work out what only the client can tell us, and draft it as topics and items in this workspace repo's outbox/ for review; then publish approved drafts to the client's Workspace. Use in a *-workspace repo (or any repo with groundwork.yml) when someone says "start onboarding", "onboard <client>", "prepare the outbox", "what should we ask <client>", "draft questions for <client>", "get <client>'s workspace ready", or "publish the outbox".
+description: Start onboarding a new messaging/marketing client, or prepare what goes out to a Groundwork client — read the client's project repo (open questions, recent logs, specs, shared pages), work out what only the client can tell us, and draft it as topics and items in this workspace repo's outbox/ for review; then publish approved drafts to the client's Workspace. Use in a *-workspace repo (or any repo with groundwork.yml) when someone says "start onboarding", "onboard <client>", "prepare the outbox", "what should we ask <client>", "draft questions for <client>", "get <client>'s workspace ready", or "publish the outbox". Also use in any repo linked to a Groundwork project (it has a `groundwork/` folder of notes) when someone says "make a Groundwork page", "make a branded page for <client>", or "put this on <client>'s workspace".
 ---
 
 # Groundwork Outbox
@@ -56,6 +56,33 @@ File formats: `arkidentity/groundwork-library` → `docs/REPO-CONTRACT.md` (topi
      from the item as `<app url>/c/<client slug>/library/for-the-team/<slug>`.
    - **Keep copies current:** the stale check compares each copy's `copied:` date with the source
      file's last commit, and re-copies on a yes.
+
+## Database projects: branded pages from the linked repo
+
+A project made with **New client** on groundwork.chat has no `groundwork.yml`. Its notes live in
+Groundwork, copied into `groundwork/inbox/` and `groundwork/threads/` in the repo it's linked to.
+Groundwork hosts pages from that same repo. If this repo has a `groundwork/` folder and no
+`groundwork.yml`, this is the flow for pages (questions and topics can't be published from Claude
+for these projects yet; say so if asked).
+
+1. **Where pages go:** `groundwork/pages/<slug>/` (lowercase, hyphens), with
+   - `index.html`: a full page (`<!doctype html>`, charset, viewport, `<title>`).
+   - `deliverable.yml`: `title:` and `audience: all` (or `team`: only the team sees it). Optional:
+     `version:`, `updated: YYYY-MM-DD`, `blurb:` (one line for its card on Home), `order:`,
+     `hidden: true`. Public link: `share: { code: <12+ random letters>, on: true }` (the app's
+     Share switch doesn't reach repo pages yet).
+   - Images next to it. Never write anything else under `groundwork/`: the rest is Groundwork's.
+2. **Brand first.** Look for `groundwork/pages/_shared/brand.css`. If it's missing, find the brand
+   with the person: the client's live website (read its colors and fonts), a brand guide, logo
+   files. Ask, don't guess. Write it as tokens in `_shared/brand.css` (colors as CSS variables for
+   light and dark, Google Fonts `@import`), with a comment saying where each value came from, and
+   show it before saving. Every page links `/deliverable.css` then `_shared/brand.css`, so all of a
+   client's pages match.
+3. **Sections:** put `data-section="Name"` on each major section so notes say where they were left.
+4. **Lean.** One job per page, real content, no filler. Follow the project's `CLAUDE.md` rules
+   (security, money, people) exactly as for any other client material.
+5. **Publish:** commit and push. It shows on the project's Home within about 30 seconds. Tell the
+   person where to look, and that the client sees it if `audience: all`.
 
 ## Setup
 

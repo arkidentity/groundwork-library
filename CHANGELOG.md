@@ -5,6 +5,13 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.17.0 (2026-11-17)
+- **`groundwork-outbox` makes pages for database projects.** Groundwork now hosts branded pages
+  from a linked repo's `groundwork/pages/<slug>/` (`index.html` + `deliverable.yml`), like
+  `workspace/deliverables/` in a file-based workspace. The skill adds a section for repos with a
+  `groundwork/` folder and no `groundwork.yml`: brand in `groundwork/pages/_shared/brand.css`,
+  `data-section` names, `share:` in `deliverable.yml`. Triggers on "make a Groundwork page".
+
 ## 0.16.0 (2026-11-16)
 - **`groundwork-inbox` knows database projects.** Groundwork is now Agency, Brand, Project, with
   notes held in the database and no `groundwork.yml`. The skill adds a Step 0 (find the project in
