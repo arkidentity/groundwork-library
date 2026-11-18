@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.23.0 (2026-11-18)
+- **Questions and templates through the connector.** For database projects, `groundwork-outbox`
+  and `groundwork-inbox` step 7 use the connector: `get_guide outbox`, `list_questions`,
+  `create_question` (after a yes) and `list_templates` / `get_template`. No more copying wording
+  into the dashboard.
+
 ## 0.22.1 (2026-11-18)
 - **Ready for Anthropic's directory.** Each plugin folder now has its own README (what it does, and
   everything it runs, sends and fetches) and LICENSE, and the core plugin shows as "Groundwork".

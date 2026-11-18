@@ -11,6 +11,12 @@ reaches the client without a yes.**
 
 File formats: `arkidentity/groundwork-library` → `docs/REPO-CONTRACT.md` (topics, items, `planned`, `links`).
 
+**Database projects (no `groundwork.yml`, only a `groundwork/` folder or none): use the connector.**
+`get_guide outbox` has how to choose and word questions, `list_questions` shows what's already
+asked, `list_templates` / `get_template` give the current templates, and `create_question` puts an
+approved question in their Groundwork. Pass `plugin_version` (see `groundwork-inbox`) on your first
+call. The `outbox/` folder flow below is for workspace repos.
+
 ## Ground rules
 
 1. **Draft in `outbox/`, never straight into `workspace/`.** The app can't read `outbox/`, so drafts

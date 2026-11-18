@@ -99,9 +99,9 @@ rundown and its "mark done" step. Without the connector (repo copy only), follow
    needed → `done`; something still owed to them → leave `open`.
 6. **Mark done.** After a note is filed (or set aside with a yes) and any reply is sent, call
    `set_status` with `done`. Only for notes you handled. Show the list first.
-7. **Follow-up questions.** Draft them in chat, plain language, no jargon. Database projects can't
-   publish assigned questions from here yet (the connector has no create-item tool, and the repo
-   copy covers only inbox and threads). Give the person the final wording to add in the
+7. **Follow-up questions.** Follow the connector's outbox guide (`get_guide outbox`): check
+   `list_questions` first, draft in chat in plain language, and call `create_question` for each one
+   only after a yes. Without the connector, give the person the final wording to add in the
    Groundwork dashboard, and say that's what happened.
 8. **Commit the project repo** per its conventions, naming the notes filed and the ones set aside.
    There is no workspace-repo commit and nothing to push for the inbox itself.
