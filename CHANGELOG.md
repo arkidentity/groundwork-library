@@ -5,6 +5,11 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.24.0 (2026-11-18)
+- **New plugin `groundwork-chat` ("Groundwork Chat"): the edition for Anthropic's plugin directory.**
+  The core skills as text only (no CSS, HTML or scripts), without repo hooks, with an icon. Skills
+  that leave a file out say where to read it. The `groundwork` plugin is unchanged.
+
 ## 0.23.0 (2026-11-18)
 - **Questions and templates through the connector.** For database projects, `groundwork-outbox`
   and `groundwork-inbox` step 7 use the connector: `get_guide outbox`, `list_questions`,

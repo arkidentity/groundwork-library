@@ -1,0 +1,18 @@
+{
+  "name": "groundwork-chat",
+  "displayName": "Groundwork Chat",
+  "version": "0.24.0",
+  "description": "Work with Groundwork (groundwork.chat) in Claude: connect it, process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, start projects from templates, and capture a client brand.",
+  "author": {
+    "name": "Groundwork",
+    "url": "https://groundwork.chat"
+  },
+  "homepage": "https://groundwork.chat",
+  "repository": "https://github.com/arkidentity/groundwork-library",
+  "license": "MIT",
+  "keywords": [
+    "groundwork",
+    "agency",
+    "client-feedback"
+  ]
+}

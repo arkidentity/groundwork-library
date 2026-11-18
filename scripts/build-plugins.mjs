@@ -38,13 +38,34 @@ const plugins = [
     description: 'Core Groundwork skills: connect Claude to Groundwork, file client notes (inbox), prepare questions and branded pages (outbox), start projects, capture a client brand, and keep the shared repo in sync.',
   },
   ...optional.map((name) => ({ name, skills: [name], description: short(desc(name)) })),
+  // The directory edition (Anthropic's plugin directory): text-only skills, since an organization
+  // that isn't Verified may ship only Markdown, text, JSON, YAML and images. Other files are left
+  // out (each skill says where to read them), and repo hooks (shared-repo-sync) stay out.
+  {
+    name: 'groundwork-chat',
+    displayName: 'Groundwork Chat',
+    directory: true,
+    skills: core.filter((s) => s !== 'shared-repo-sync'),
+    description: 'Work with Groundwork (groundwork.chat) in Claude: connect it, process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, start projects from templates, and capture a client brand.',
+  },
 ]
+const ALLOWED = /\.(md|txt|json|ya?ml|png|jpe?g|gif|webp)$/i
+const isBinary = (f) => /\.(png|jpe?g|gif|webp)$/i.test(f)
+const leftOutNote = (skill, left) => [
+  '',
+  '## Files this edition leaves out',
+  '',
+  `The directory edition carries text only. In a workspace repo, use its own copy under \`.claude/skills/${skill}/\`; otherwise read these from https://github.com/${lib.source}/tree/v${version}/skills/${skill}:`,
+  '',
+  ...left.map((f) => `- \`${f}\``),
+  '',
+].join('\n')
 
 // The README shown as the directory listing. It must say everything the plugin runs, sends or
 // fetches (the directory's security scan checks behavior against it).
 function readme(p) {
   const skills = p.skills.map((s) => `- **${s}**: ${short(desc(s))}`).join('\n')
-  return `# ${p.name === 'groundwork' ? 'Groundwork' : p.name}
+  return `# ${p.displayName ?? (p.name === 'groundwork' ? 'Groundwork' : p.name)}
 
 ${p.description}
 
@@ -91,21 +112,29 @@ for (const p of plugins) {
   want.set(`${root}/README.md`, readme(p))
   want.set(`${root}/LICENSE`, norm(readFileSync(join(LIB, 'LICENSE'), 'utf8')))
   want.set(`${root}/.claude-plugin/plugin.json`, JSON.stringify({
-    name: p.name, displayName: p.name === 'groundwork' ? 'Groundwork' : undefined, version, description: p.description, author,
+    name: p.name, displayName: p.displayName ?? (p.name === 'groundwork' ? 'Groundwork' : undefined), version, description: p.description, author,
     homepage: 'https://groundwork.chat', repository: `https://github.com/${lib.source}`, license: 'MIT',
     keywords: ['groundwork', 'agency', 'client-feedback'],
   }, null, 2) + '\n')
+  if (p.directory) want.set(`${root}/.claude-plugin/icon.png`, readFileSync(join(LIB, 'assets', 'icon.png')))
   for (const skill of p.skills) {
     const src = join(LIB, 'skills', skill)
+    const left = []
     const walk = (dir) => {
       for (const f of readdirSync(dir)) {
         const full = join(dir, f)
         if (f === '.library.json') continue
+        const rel = relative(src, full).replace(/\\/g, '/')
         if (statSync(full).isDirectory()) walk(full)
-        else want.set(`${root}/skills/${skill}/${relative(src, full).replace(/\\/g, '/')}`, norm(readFileSync(full, 'utf8')))
+        else if (p.directory && !ALLOWED.test(f)) left.push(rel)
+        else want.set(`${root}/skills/${skill}/${rel}`, isBinary(f) ? readFileSync(full) : norm(readFileSync(full, 'utf8')))
       }
     }
     walk(src)
+    if (left.length) {
+      const key = `${root}/skills/${skill}/SKILL.md`
+      want.set(key, want.get(key).trimEnd() + '\n' + leftOutNote(skill, left))
+    }
   }
 }
 want.set('.claude-plugin/marketplace.json', JSON.stringify({
@@ -122,13 +151,14 @@ const walkHave = (dir) => {
   for (const f of readdirSync(join(LIB, dir))) {
     const rel = `${dir}/${f}`
     if (statSync(join(LIB, rel)).isDirectory()) walkHave(rel)
-    else have.set(rel, norm(readFileSync(join(LIB, rel), 'utf8')))
+    else have.set(rel, isBinary(rel) ? readFileSync(join(LIB, rel)) : norm(readFileSync(join(LIB, rel), 'utf8')))
   }
 }
 walkHave('plugins')
 if (existsSync(join(LIB, '.claude-plugin/marketplace.json'))) have.set('.claude-plugin/marketplace.json', norm(readFileSync(join(LIB, '.claude-plugin/marketplace.json'), 'utf8')))
 
-const stale = [...want].filter(([f, t]) => have.get(f) !== t).map(([f]) => f)
+const same = (a, b) => (Buffer.isBuffer(a) && Buffer.isBuffer(b) ? a.equals(b) : a === b)
+const stale = [...want].filter(([f, t]) => !same(have.get(f), t)).map(([f]) => f)
 const extra = [...have.keys()].filter((f) => !want.has(f))
 
 if (check) {

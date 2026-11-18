@@ -17,6 +17,12 @@
       "source": "./plugins/church-website-discovery",
       "description": "Run the information-gathering process for a church website — prefill what we can from their site, calls and listings, write it into content/ as unconfirmed, draft the round-1 confirms, turn the…",
       "category": "productivity"
+    },
+    {
+      "name": "groundwork-chat",
+      "source": "./plugins/groundwork-chat",
+      "description": "Work with Groundwork (groundwork.chat) in Claude: connect it, process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, start projects from templates, and capture a client brand.",
+      "category": "productivity"
     }
   ]
 }
