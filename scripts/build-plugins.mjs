@@ -57,7 +57,7 @@ const leftOutNote = (skill, left) => [
   '',
   `The directory edition carries text only. In a workspace repo, use its own copy under \`.claude/skills/${skill}/\`; otherwise read these from https://github.com/${lib.source}/tree/v${version}/skills/${skill}:`,
   '',
-  ...left.map((f) => `- \`${f}\``),
+  ...[...left].sort().map((f) => `- \`${f}\``), // sorted: readdir order differs between Windows and Linux
   '',
 ].join('\n')
 
