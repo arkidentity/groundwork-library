@@ -21,7 +21,10 @@ jobs:
       # Templates, skills, index, changelog, question bank.
       - run: npm run validate
       # The validator itself, and the sync script, against throwaway repos.
-      - run: npm test
+      # Failures also go out as annotations, so they can be read without signing in to GitHub.
+      - run: |
+          set -o pipefail
+          npm test 2>&1 | tee test-output.txt || { grep -E "FAIL|ERROR|out of date|Error" test-output.txt | head -20 | sed 's/^/::error::/'; exit 1; }
       # This repo is public. Fail if a client name ever lands in a file, a commit message, or history.
       # The pattern is a repository secret (a list committed here would leak the names); forks skip it.
       - name: Client-name guard
