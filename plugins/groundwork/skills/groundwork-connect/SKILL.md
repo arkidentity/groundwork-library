@@ -15,7 +15,9 @@ ask them to paste a sign-in code, key or token into the chat, and never write on
 ## 0. Is it already connected?
 
 If Groundwork tools are available to you (`list_workspaces`, `list_notes`, ...), call
-`list_workspaces` and tell them it works and which workspaces they can see. Done.
+`list_workspaces` (with `plugin_version`: the `version` in `../../.claude-plugin/plugin.json` next to
+this skill's folder) and tell them it works and which workspaces they can see. If the result starts
+with UPDATE AVAILABLE, tell them that too. Done.
 
 If not, ask which they use, then go to that section:
 - **Claude desktop, claude.ai or the mobile app** → section 1 (most people).

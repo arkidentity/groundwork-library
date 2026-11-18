@@ -1,6 +1,6 @@
 {
   "name": "church-website-discovery",
-  "version": "0.21.1",
+  "version": "0.22.0",
   "description": "Run the information-gathering process for a church website — prefill what we can from their site, calls and listings, write it into content/ as unconfirmed, draft the round-1 confirms, turn the…",
   "author": {
     "name": "Groundwork",

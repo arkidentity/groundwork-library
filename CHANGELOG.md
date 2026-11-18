@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.22.0 (2026-11-18)
+- **Groundwork tells you when your plugin is out of date.** `groundwork-inbox` and
+  `groundwork-connect` now pass their version (`plugin_version`) to the connector's
+  `list_workspaces` / `list_notes`. When a newer release is out, the connector answers with an
+  UPDATE AVAILABLE line and how to update (Claude Code, an organization's zip, or a workspace repo).
+
 ## 0.21.1 (2026-11-17)
 - **`groundwork-inbox`: the connector's guide leads for database projects.** With the connector,
   Claude calls `get_guide inbox` (or the `process_inbox` prompt), which groundwork.chat keeps

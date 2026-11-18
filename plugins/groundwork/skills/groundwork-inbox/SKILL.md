@@ -30,6 +30,11 @@ stays the inbox, so nothing is lost if the repo link is removed.
 
 ### Ways to read the inbox
 
+0. **Say which version you are.** On your first `list_workspaces` or `list_notes` call, pass
+   `plugin_version`: this skill's version, from the `version` in `../../.claude-plugin/plugin.json`
+   next to this skill's folder (or the version in the folder path, e.g. `.../groundwork/0.22.0/skills/`).
+   In a workspace repo's copy, use the `ref:` under `libraries:` in `groundwork.yml`. If the result
+   starts with **UPDATE AVAILABLE**, tell the person in one line, then carry on.
 1. **The Groundwork connector (use this when it's connected).** Tools: `list_workspaces`,
    `list_notes` (`workspace`, `status` defaults to not done, `limit`), `get_note` (spot, every reply,
    numbered files, the first 2 photos as previews), `get_photo` (one photo by file number), `reply`,
