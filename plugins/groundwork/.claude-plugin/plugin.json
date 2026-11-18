@@ -1,6 +1,7 @@
 {
   "name": "groundwork",
-  "version": "0.22.0",
+  "displayName": "Groundwork",
+  "version": "0.22.1",
   "description": "Core Groundwork skills: connect Claude to Groundwork, file client notes (inbox), prepare questions and branded pages (outbox), start projects, capture a client brand, and keep the shared repo in sync.",
   "author": {
     "name": "Groundwork",

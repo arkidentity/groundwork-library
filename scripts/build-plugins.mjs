@@ -40,13 +40,58 @@ const plugins = [
   ...optional.map((name) => ({ name, skills: [name], description: short(desc(name)) })),
 ]
 
+// The README shown as the directory listing. It must say everything the plugin runs, sends or
+// fetches (the directory's security scan checks behavior against it).
+function readme(p) {
+  const skills = p.skills.map((s) => `- **${s}**: ${short(desc(s))}`).join('\n')
+  return `# ${p.name === 'groundwork' ? 'Groundwork' : p.name}
+
+${p.description}
+
+Groundwork (https://groundwork.chat) is where an agency's clients and teammates leave notes right on
+a live site or page, answer questions, and see what's been settled. These skills teach Claude to
+work with that: read and file the notes, draft replies for you to approve, prepare the next
+questions, and keep the project's repository in step.
+
+## Skills
+
+${skills}
+
+## What it runs, sends and fetches
+
+- **The Groundwork connector** (https://groundwork.chat/api/mcp), when you've connected it, to list
+  and read notes, reply, and set a note's status. Nothing is sent to a client without your yes in
+  the chat. The skills pass their own version so Groundwork can tell you when an update is out.
+- **Files in your own repositories**: notes, decisions and drafts are written into the project
+  repository you're working in, and committed only when you ask.${p.skills.includes('shared-repo-sync') ? `
+- **shared-repo-sync** can set up two optional hooks in a repository you choose: \`git pull\` when a
+  session starts, and a reminder to push when it ends. They run only after you ask for them.` : ''}${p.skills.includes('groundwork-project') ? `
+- **groundwork-project** reads this library's templates from GitHub
+  (https://github.com/arkidentity/groundwork-library) at the version your workspace pins.` : ''}${p.skills.includes('groundwork-brand-capture') ? `
+- **groundwork-brand-capture** fetches a client's public website to read its colors, fonts and logo.` : ''}
+
+No data is sent anywhere else.
+
+## Get started
+
+Ask Claude "help me connect Groundwork", or see https://groundwork.chat.
+
+## License
+
+MIT. See LICENSE.
+`
+}
+
 // Desired files: path -> text
 const want = new Map()
 const norm = (t) => t.replace(/\r\n/g, '\n')
 for (const p of plugins) {
   const root = `plugins/${p.name}`
+  // Anthropic's directory needs a README (40+ words) and a license inside each plugin folder.
+  want.set(`${root}/README.md`, readme(p))
+  want.set(`${root}/LICENSE`, norm(readFileSync(join(LIB, 'LICENSE'), 'utf8')))
   want.set(`${root}/.claude-plugin/plugin.json`, JSON.stringify({
-    name: p.name, version, description: p.description, author,
+    name: p.name, displayName: p.name === 'groundwork' ? 'Groundwork' : undefined, version, description: p.description, author,
     homepage: 'https://groundwork.chat', repository: `https://github.com/${lib.source}`, license: 'MIT',
     keywords: ['groundwork', 'agency', 'client-feedback'],
   }, null, 2) + '\n')
