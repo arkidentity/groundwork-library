@@ -7,6 +7,7 @@
     "name": "Ark Identity",
     "url": "https://groundwork.chat"
   },
+  "privacyPolicyUrl": "https://groundwork.chat/privacy",
   "homepage": "https://groundwork.chat",
   "repository": "https://github.com/arkidentity/groundwork-library",
   "license": "MIT",

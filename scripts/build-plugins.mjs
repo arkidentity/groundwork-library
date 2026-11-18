@@ -113,7 +113,7 @@ for (const p of plugins) {
   want.set(`${root}/LICENSE`, norm(readFileSync(join(LIB, 'LICENSE'), 'utf8')))
   want.set(`${root}/.claude-plugin/plugin.json`, JSON.stringify({
     name: p.name, displayName: p.displayName ?? (p.name === 'groundwork' ? 'Groundwork' : undefined), version, description: p.description, author: p.directory ? { ...author, name: 'Ark Identity' } : author,
-    homepage: 'https://groundwork.chat', repository: `https://github.com/${lib.source}`, license: 'MIT',
+    ...(p.directory ? { privacyPolicyUrl: 'https://groundwork.chat/privacy' } : {}), homepage: 'https://groundwork.chat', repository: `https://github.com/${lib.source}`, license: 'MIT',
     keywords: ['groundwork', 'agency', 'client-feedback'],
   }, null, 2) + '\n')
   if (p.directory) want.set(`${root}/.claude-plugin/icon.png`, readFileSync(join(LIB, 'assets', 'icon.png')))
