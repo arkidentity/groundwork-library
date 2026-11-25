@@ -5,6 +5,10 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.28.2 (2026-11-25)
+- **The plugin now only points to guides the connector has.** 0.28.0 told Claude to fetch `site-setup`, `repo-work` and `brand` guides and to use `get_workspace`, `check_site`, `get_page_starter` and the `make_page` / `setup_site` prompts, but the connector only serves the guides `inbox`, `replies`, `outbox`, `whats-waiting` and (new, connector guides 0.5.0) `pages`. `groundwork-guides` now lists only those, and says plainly that Note button setup, repo work and brand capture are not in the connector yet.
+- **New connector guide `pages`:** the lean-pages rules (word budget, the page plus a full plan, visuals first, questions on markers with `for:`, a check before sharing), written for any agency. It replaces keeping that rule as a local edit in a workspace repo.
+
 ## 0.28.1 (2026-11-25)
 - **Fixes for Windows.** `template-diff.mjs` (groundwork-project) printed backslash paths and compared files with CRLF line endings, so its report was wrong on a Windows checkout. It now uses forward slashes and ignores line endings. The validator and its tests also read files as LF, so `npm test` passes on Windows (it already passed on Linux). No change to templates or the contract.
 - `START.md`: troubleshooting for a project missing from Claude, the connector signing in as the wrong email, note status living in Groundwork, and the Note button after sign-in.
