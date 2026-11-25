@@ -34,7 +34,7 @@ const fail = (m) => {
 }
 
 // ---------- small readers ----------
-const read = (p) => readFileSync(p, 'utf8')
+const read = (p) => readFileSync(p, 'utf8').replace(/\r\n/g, '\n') // Windows checkouts use CRLF; compare as LF
 const isDir = (p) => existsSync(p) && statSync(p).isDirectory()
 function frontmatter(text) {
   const m = text.match(/^---\n([\s\S]*?)\n---/)
@@ -55,7 +55,7 @@ function walk(dir, base = dir) {
     if (e.name.startsWith('.')) continue
     const p = join(dir, e.name)
     if (e.isDirectory()) Object.assign(out, walk(p, base))
-    else out[relative(base, p)] = read(p)
+    else out[relative(base, p).split('\\').join('/')] = read(p) // forward slashes on Windows too
   }
   return out
 }

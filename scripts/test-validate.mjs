@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const V = readFileSync(join(ROOT, 'library.yml'), 'utf8').match(/^version:\s*(\S+)/m)[1]
 const TV = readFileSync(join(ROOT, 'templates/blank/template.yml'), 'utf8').match(/^version:\s*(\S+)/m)[1]
-const edit = (dir, file, fn) => writeFileSync(join(dir, file), fn(readFileSync(join(dir, file), 'utf8')))
+const edit = (dir, file, fn) => writeFileSync(join(dir, file), fn(readFileSync(join(dir, file), 'utf8').replace(/\r\n/g, '\n'))) // CRLF checkouts (Windows): edit as LF
 const swap = (from, to) => (s) => {
   if (!s.includes(from)) throw new Error(`test setup: "${from}" not found`)
   return s.replace(from, to)

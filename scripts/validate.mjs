@@ -24,7 +24,7 @@ const SEMVER = /^\d+\.\d+\.\d+$/
 const BUILTIN_VARS = ['project', 'date', 'from']
 
 const rel = (p) => relative(ROOT, p)
-const read = (p) => readFileSync(p, 'utf8')
+const read = (p) => readFileSync(p, 'utf8').replace(/\r\n/g, '\n') // Windows checkouts use CRLF; the frontmatter checks expect LF
 const isDir = (p) => existsSync(p) && statSync(p).isDirectory()
 const dirs = (p) => (isDir(p) ? readdirSync(p, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name).sort() : [])
 const files = (p, ext) => (isDir(p) ? readdirSync(p).filter((f) => f.endsWith(ext)).sort() : [])
