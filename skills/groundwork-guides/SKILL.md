@@ -1,6 +1,6 @@
 ---
 name: groundwork-guides
-description: Work in Groundwork (groundwork.chat) through its connector - the notes clients and teammates leave on live sites and pages, replies, the next questions to ask a client, pages for clients (including pages with questions on them), and starting projects from templates. This skill only points to the right guide, because Groundwork serves the current guide for each job. Use when someone says "process the inbox", "what did [client] send", "anything new in Groundwork", "reply to the note", "make a Groundwork page", "make a branded page", "make a how-to page", "add a question to the page", "start a project for [client]", "what should we ask [client]", or anything about Groundwork notes, pages, clients or workspaces.
+description: Work in Groundwork (groundwork.chat) through its connector - the notes clients and teammates leave on live sites and pages, replies, the next questions to ask a client, pages for clients (including pages with questions on them), putting the Note button on a client's website, working from notes in a project repo, capturing a client's brand, and starting projects from templates. This skill only points to the right guide, because Groundwork serves the current guide for each job. Use when someone says "process the inbox", "what did [client] send", "anything new in Groundwork", "reply to the note", "make a Groundwork page", "make a branded page", "make a how-to page", "add a question to the page", "put the Note button on [client]'s site", "did the script tag work", "capture [client]'s brand", "start a project for [client]", "what should we ask [client]", or anything about Groundwork notes, pages, clients or workspaces.
 ---
 
 # Groundwork
@@ -25,15 +25,17 @@ Call `get_guide` with the topic:
 | Process notes, read what a client sent, mark things done | `inbox` (with `replies`) |
 | Choose and word the next questions for a client | `outbox` |
 | Make a page a client will read, with or without questions on it | `pages` (the rules: lean, visual, questions on markers) |
+| Put the Note button on a client's website; fix it when it doesn't show | `site-setup` |
+| Make changes from notes while a project's repo is open | `repo-work` |
+| Capture a client's brand from their website for their pages | `brand` |
 | A quick read-only look at what's waiting | `whats-waiting` |
 
 The connector also offers ready-made starts (prompts): `process_inbox`, `whats_waiting`. Starting a
 project from a template: `list_templates`, then `get_template`. Helpful tool: `list_questions`.
 
-**Not in the connector yet:** putting the Note button on a client's website, working in a project's
-repo, and capturing a client's brand. For the Note button and its troubleshooting, point the person to
-groundwork.chat/help. In a project repo that has its own `.claude/skills/groundwork-*` folders, use
-those skills for brand capture and starting projects.
+The connector can't add a website, place the script or write files. Those guides walk the person
+through the app and their repo. In a project repo that has its own `.claude/skills/groundwork-*`
+folders (an older file-based workspace), use those skills there.
 
 ## 3. Rules that never change
 - **Nothing reaches a client without the person's yes.** Show the exact words or page first.

@@ -5,6 +5,9 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.28.3 (2026-11-25)
+- **The connector now serves the guides 0.28.0 promised.** Connector guides 0.6.0 add `site-setup` (the Note button on a client site, and why it might not show), `repo-work` (changes from notes while a project repo is open) and `brand` (capture a client brand from their website), next to `pages` (0.5.0). `groundwork-guides` lists them again. The `get_workspace`, `check_site` and `get_page_starter` tools and the `make_page` / `setup_site` prompts named in 0.28.0 still do not exist, and the skill does not mention them.
+
 ## 0.28.2 (2026-11-25)
 - **The plugin now only points to guides the connector has.** 0.28.0 told Claude to fetch `site-setup`, `repo-work` and `brand` guides and to use `get_workspace`, `check_site`, `get_page_starter` and the `make_page` / `setup_site` prompts, but the connector only serves the guides `inbox`, `replies`, `outbox`, `whats-waiting` and (new, connector guides 0.5.0) `pages`. `groundwork-guides` now lists only those, and says plainly that Note button setup, repo work and brand capture are not in the connector yet.
 - **New connector guide `pages`:** the lean-pages rules (word budget, the page plus a full plan, visuals first, questions on markers with `for:`, a check before sharing), written for any agency. It replaces keeping that rule as a local edit in a workspace repo.
