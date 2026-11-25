@@ -1,6 +1,6 @@
 ---
 name: groundwork-site
-description: Put Groundwork's Note button on a client's live website and get the team working the notes - add the client on groundwork.chat, add the one-line script tag (AI Studio, Lovable, Bolt, Go High Level, WordPress, Squarespace, Wix or Claude Code), check it landed with "Check this site", connect the site's GitHub repo, invite the client's people, send a test note, then work the notes in Claude. No terminal needed. Use when someone says "put Groundwork on a site", "add the Note button", "connect a client's website", "set up Groundwork for a built site", "the Note button isn't showing", "did the script tag work", "onboard a developer to Groundwork", or "how do we edit a site from the notes".
+description: Put Groundwork's Note button on a client's live website and get the team working the notes - add the client on groundwork.chat, add the one-line script tag (AI Studio, Lovable, Bolt, WordPress, Squarespace, Wix or Claude Code), check it landed with "Check this site", connect the site's GitHub repo, invite the client's people, send a test note, then work the notes in Claude. No terminal needed. Use when someone says "put Groundwork on a site", "add the Note button", "connect a client's website", "set up Groundwork for a built site", "the Note button isn't showing", "did the script tag work", "onboard a developer to Groundwork", or "how do we edit a site from the notes".
 ---
 
 # Put Groundwork on a client's website
@@ -24,9 +24,9 @@ every page. How it gets there depends on how the site is built:
 
 | Site built in | Do this |
 |---|---|
-| AI Studio, Lovable, Bolt | Open **Instructions**, **Copy for your AI prompt**, paste it into the AI's chat. It adds the tag and names each section. Then publish. |
+| AI Studio (Go High Level's builder), Lovable, Bolt | Open **Instructions**, **Copy for your AI prompt**, paste it into the AI's chat. It adds the tag and names each section. Then publish. |
 | Claude (a repo on the computer) | Give Claude the same prompt, then commit and push. |
-| Go High Level | Settings → Custom code or Tracking code → footer → paste the tag → save. |
+| A Go High Level website or funnel (built in its page builder, not AI Studio) | Settings → Custom code or Tracking code → footer → paste the tag → save. |
 | WordPress, Squarespace, Wix | The site-wide footer code box (steps are on the Instructions page). |
 
 Sections get names (`data-section="Hero"`) so a note says where it was left. Visitors never see the
@@ -43,7 +43,7 @@ live until it's published.
 ## 4. Where the code lives: connect GitHub
 **Where the code lives** → **Connect GitHub** → choose the organization → **Only select
 repositories** → the site's repo → Install. This copies every note (with photos and replies) into
-`groundwork/inbox/` in that repo so Claude can read them. A pure Go High Level or Wix site has no
+`groundwork/inbox/` in that repo so Claude can read them. A site built only in a page builder (Wix, Squarespace, a Go High Level funnel) has no
 repo: skip this step; the team works from Groundwork itself. Groundwork only writes inside a
 `groundwork/` folder, and only to repos you pick.
 
@@ -73,7 +73,7 @@ Each developer, once:
 In the repo, in Claude: **"Work through the new Groundwork notes."** (`groundwork-inbox` does it.)
 Pull first. Claude reads each note with its page, section and photos, proposes the change, drafts the
 reply, and waits for a yes. Then push. **A push is not a publish on every host:** a site in AI Studio
-or Go High Level may need publishing before the client sees it. Claude asks "is this live?" before
+(Go High Level's builder) may need publishing before the client sees it. Claude asks "is this live?" before
 saying it's fixed; then mark the note **Done** (or reply) so the client sees it on their spot.
 
 ## Check once before a client is invited

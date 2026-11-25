@@ -109,10 +109,10 @@ are very different. Pick on purpose and tell the person which one a part of the 
 **2. Reaches the team: `asks:` in `deliverable.yml`.** The only way a page collects an answer.
 ```yaml
 asks:
-  - id: site-hosting            # unique on this page, lowercase and dashes
-    section: One thing to tell us   # the data-section (or data-note) on the page where its marker sits
-    prompt: Does this site go live from AI Studio or Go High Level?   # one question, 20 words or fewer
-    kind: confirm               # confirm = "Sounds right?" one tap; choice = pick one of options:; omit = a note
+  - id: homepage-line           # unique on this page, lowercase and dashes
+    section: Homepage line      # the data-section (or data-note) on the page where its marker sits
+    prompt: Does this homepage line sound like you?   # one question, 20 words or fewer
+    kind: confirm               # confirm = "Sounds right?" one tap; choice = pick one; rank = put in order; omit = a note
     for: Alex                   # optional: only this person (name, email or a list) sees it
 ```
 - A marker shows on that section. Tapping it opens the answer box right there; after an answer a
@@ -123,17 +123,29 @@ asks:
 - **`kind: choice` is a pick-one.** Give it `options:` (2 to 6 short options, each up to 80
   characters). The reader taps one, then Send, with an optional "why". The answer arrives as a note
   "Chose: <option>." and the team gets the usual alert. Use it when there are a few real options
-  (hosting, a design, a date) and a typed answer would be harder to act on:
+  and a typed answer would be harder to act on:
   ```yaml
-  - id: hosting
-    section: One thing to tell us
-    prompt: Does this site go live from AI Studio or Go High Level?
+  - id: headline
+    section: Homepage headline
+    prompt: Which headline do you want on the homepage?
     kind: choice
-    options: [AI Studio, Go High Level, Not sure]
+    options: ["Show up. Stay close.", "Come as you are"]
   ```
-  Fewer than 2 usable options makes it a plain note. Put the options on the page too, so a reader
-  can see what each means before picking. Nothing happens automatically after a pick: the answer
-  is a note, and the inbox flow replies to it.
+- **`kind: rank` puts all the options in order.** Same `options:` (2 to 6). The reader taps them in
+  order, favorite first; each gets a number; tapping a numbered one takes it back and renumbers;
+  Send waits until all are ranked. The answer arrives as "Ranked: 1. <option>; 2. <option>; ..."
+  with an optional "why". Use it when you need to know the order, not just the winner (taglines,
+  logo options, which service to build first):
+  ```yaml
+  - id: tagline-order
+    section: Tagline options
+    prompt: Rank these taglines, favorite first.
+    kind: rank
+    options: ["Show up. Stay close.", "Where every neighbor belongs", "Come as you are", "Faith that feels like home"]
+  ```
+  Fewer than 2 usable options makes either a plain note. Put the options on the page too, with
+  what each means, so a reader can see before choosing. Nothing happens automatically after an
+  answer: it is a note, and the inbox flow replies to it. Keep to 4 or fewer for a ranking.
 - Every `section:` must match a `data-section` on the page, or the marker has nowhere to sit.
 - Run the **ask check** (step 4b) on every ask.
 

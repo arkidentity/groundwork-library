@@ -100,8 +100,8 @@ rundown and its "mark done" step. Without the connector (repo copy only), follow
    conversation. Pick the status honestly: a question back to them → `answered`; we'll do it but
    haven't yet → `planned`; nothing more needed → `done`; we won't do it (say why in the reply) →
    `declined`; something still owed to them → leave `open`. **Don't say a change is made until it is
-   live on the site.** A push is not a publish on every host: a site built in AI Studio or hosted
-   in Go High Level may need publishing first. Ask the person "is this live?"; if not, reply
+   live on the site.** A push is not a publish on every host: a site built in a builder such as
+   AI Studio (Go High Level's builder) may need publishing there first. Ask the person "is this live?"; if not, reply
    `planned` ("we've made the change and it will be on your site shortly") and come back. When a
    change is live, give the page link on its own line in the reply ("See it: https://...").
 6. **Mark done.** After a note is filed (or set aside with a yes), any reply is sent and the change
