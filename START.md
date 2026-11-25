@@ -71,7 +71,7 @@ through each screen.
   the site instead.
 - **A project is missing from Claude (or you can't see it in Groundwork)?** Team members are given
   projects one by one. If you're set to **Only these clients**, a new project doesn't show for you until an owner or
-  admin ticks it: groundwork.chat → **Team settings → Edit** next to your name. Choosing **All clients** shows
+  admin ticks it: groundwork.chat → menu → **Team members** → **Edit** next to your name. Choosing **All clients** shows
   every project, including ones started later. It takes effect within about a minute, with no refresh or
   reconnect needed in Claude. A project's creator is added to it automatically. Nobody else is.
 - **Connected, but the wrong projects (or none) show?** Claude acts as the email you typed at the Allow step,
