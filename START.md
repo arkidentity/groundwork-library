@@ -69,6 +69,21 @@ through each screen.
   most 3 per 15 minutes, and last 10 minutes. Type the code on the same page that asked for it.
 - **"Connector is for team members"?** You're a client on that workspace. Clients leave notes on
   the site instead.
+- **A project is missing from Claude (or you can't see it in Groundwork)?** Team members are given
+  projects one by one. If you're set to **Only these clients**, a new project doesn't show for you until an owner or
+  admin ticks it: groundwork.chat → **Team settings → Edit** next to your name. Choosing **All clients** shows
+  every project, including ones started later. It takes effect within about a minute, with no refresh or
+  reconnect needed in Claude. A project's creator is added to it automatically. Nobody else is.
+- **Connected, but the wrong projects (or none) show?** Claude acts as the email you typed at the Allow step,
+  not your Claude login. If that email isn't on the team for a project, the project won't appear. Open
+  groundwork.chat → **Connect Claude** → **Turn off** the old connection, remove and add the connector again,
+  and sign in with the email that is on the team.
+- **Marked a note done in the repo but it's still open?** Status lives in Groundwork, not in the repo's copy.
+  Mark it done in Groundwork, or through Claude (the project must be in your list).
+- **The Note button doesn't show after you sign in on a site?** The sign-in link opens the first address on
+  the project's website list and only signs you in there. If the site's home page redirects without keeping
+  the `?gw=` part of the address, the sign-in is lost. Ask the site's developer to pass it through. See Help →
+  Troubleshooting at groundwork.chat/help.
 
 **Or from a terminal (Claude Code):** run
 `claude mcp add --transport http --scope user groundwork https://groundwork.chat/api/mcp`, then type
