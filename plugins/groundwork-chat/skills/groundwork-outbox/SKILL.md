@@ -112,7 +112,7 @@ asks:
   - id: site-hosting            # unique on this page, lowercase and dashes
     section: One thing to tell us   # the data-section (or data-note) on the page where its marker sits
     prompt: Does this site go live from AI Studio or Go High Level?   # one question, 20 words or fewer
-    kind: confirm               # confirm = "Sounds right?" one tap; omit = a note, typed or spoken
+    kind: confirm               # confirm = "Sounds right?" one tap; choice = pick one of options:; omit = a note
     for: Alex                   # optional: only this person (name, email or a list) sees it
 ```
 - A marker shows on that section. Tapping it opens the answer box right there; after an answer a
@@ -120,10 +120,20 @@ asks:
   so the inbox flow handles them like any note. Each person's phone remembers what they answered.
 - `kind: confirm` is for something we plan or assume ("Edit in Claude Code from here on. Sounds
   right?"). Use it for most asks: one tap beats a paragraph.
-- **There is no "pick A or B" ask yet.** For a real choice today, show both options on the page and
-  ask one note-style question ("Which do you want, A or B, and why?"). Do not invent `options:` or
-  `kind: choice`: the app ignores them. If someone asks for tap-to-pick, say it needs an app change
-  and note it for the team.
+- **`kind: choice` is a pick-one.** Give it `options:` (2 to 6 short options, each up to 80
+  characters). The reader taps one, then Send, with an optional "why". The answer arrives as a note
+  "Chose: <option>." and the team gets the usual alert. Use it when there are a few real options
+  (hosting, a design, a date) and a typed answer would be harder to act on:
+  ```yaml
+  - id: hosting
+    section: One thing to tell us
+    prompt: Does this site go live from AI Studio or Go High Level?
+    kind: choice
+    options: [AI Studio, Go High Level, Not sure]
+  ```
+  Fewer than 2 usable options makes it a plain note. Put the options on the page too, so a reader
+  can see what each means before picking. Nothing happens automatically after a pick: the answer
+  is a note, and the inbox flow replies to it.
 - Every `section:` must match a `data-section` on the page, or the marker has nowhere to sit.
 - Run the **ask check** (step 4b) on every ask.
 
@@ -305,7 +315,7 @@ to the client. Then finish here:
 
 ## Files this edition leaves out
 
-The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-outbox/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.26.0/skills/groundwork-outbox:
+The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-outbox/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.27.0/skills/groundwork-outbox:
 
 - `deliverable-starter/_shared/brand.css`
 - `deliverable-starter/page/index.html`

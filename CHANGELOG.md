@@ -5,6 +5,12 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.27.0 (2026-11-25)
+- **`groundwork-outbox`: pick-one asks.** `kind: choice` with `options:` (2 to 6) in a page's `asks:`.
+  The reader taps an option and Send; the answer arrives as a note "Chose: <option>." Needs the
+  Groundwork app update that supports it (it shows as a plain note without it). The starter
+  `deliverable.yml` shows it.
+
 ## 0.26.0 (2026-11-24)
 - **New core skill `groundwork-site`: put the Note button on a client's website, no terminal.** Add the
   client, add the script tag (AI Studio, Lovable, Bolt, Go High Level, WordPress, Squarespace, Wix or

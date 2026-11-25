@@ -8,5 +8,6 @@ audience: all   # or team: only our team sees it
 #   - id: first-question
 #     section: First section
 #     prompt: One question, 20 words or fewer?
-#     kind: confirm      # confirm = one tap "Sounds right?"; leave out for a typed or spoken note
+#     kind: confirm      # confirm = one tap "Sounds right?"; choice = pick one of options:; leave out for a note
+#     options: [One, Two, Not sure]   # only for kind: choice (2 to 6)
 #     for: Alex          # optional: only this person sees it

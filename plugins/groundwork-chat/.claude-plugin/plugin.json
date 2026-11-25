@@ -1,7 +1,7 @@
 {
   "name": "groundwork-chat",
   "displayName": "Groundwork Chat",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "description": "Work with Groundwork (groundwork.chat) in Claude: connect it, process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, start projects from templates, and capture a client brand.",
   "author": {
     "name": "Ark Identity",
