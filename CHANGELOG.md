@@ -5,6 +5,18 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.25.0 (2026-11-24)
+- **`groundwork-outbox`: "What a page can do" and "Building a good page."** Teaches the two kinds of
+  page interactivity: reader-only (collapsible step lists, tabs; nothing saved, nothing reaches the
+  team) and `asks:` in `deliverable.yml` (the only way a page collects an answer; `kind: confirm` for
+  one tap, optional `for:`). Says plainly there is no pick-A-or-B ask yet. Page-building rules for
+  how-to pages: picture first, collapsible steps with who does each, one ask, say what's not tested.
+  The starter `deliverable.yml` shows `asks:`.
+- **`groundwork-inbox`: the connector's guide wins when they disagree; the real `set_status` values
+  (open, answered, planned, done, declined); don't say a change is made until it's live (a push is
+  not a publish on AI Studio or Go High Level sites); link the page in the reply.**
+- New template `church-services` (small onboarding: three questions, one call, a one-page plan).
+
 ## 0.24.0 (2026-11-18)
 - **New plugin `groundwork-chat` ("Groundwork Chat"): the edition for Anthropic's plugin directory.**
   The core skills as text only (no CSS, HTML or scripts), without repo hooks, with an icon. Skills

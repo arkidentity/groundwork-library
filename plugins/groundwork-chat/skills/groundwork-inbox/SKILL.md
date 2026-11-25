@@ -38,7 +38,9 @@ stays the inbox, so nothing is lost if the repo link is removed.
 1. **The Groundwork connector (use this when it's connected).** Tools: `list_workspaces`,
    `list_notes` (`workspace`, `status` defaults to not done, `limit`), `get_note` (spot, every reply,
    numbered files, the first 2 photos as previews), `get_photo` (one photo by file number), `reply`,
-   `set_status` (open / answered / done), `get_guide` (the current workflow and reply rules). It
+   `set_status` (open / answered / planned / done / declined), `get_guide` (the current workflow and reply
+   rules; **if this skill and the guide ever disagree, the guide wins**: it is updated on the server
+   without a plugin update). It
    only reaches projects where the signed-in person is on
    the team. If the tools aren't available, tell the person to add it once: in Claude, Settings →
    Connectors → Add custom connector → `https://groundwork.chat/api/mcp` → Connect → sign in with
@@ -95,10 +97,15 @@ rundown and its "mark done" step. Without the connector (repo copy only), follow
 4. **Update the project's running files** (decisions, open questions, log) exactly as step 4 says.
 5. **Draft replies in chat; nothing is sent without a yes.** For each note that needs one, show a
    short reply in the person's words. On a yes, call `reply`. Use `team_only` threads for team-only
-   conversation. Pick the status honestly: a question back to them → `answered`; nothing more
-   needed → `done`; something still owed to them → leave `open`.
-6. **Mark done.** After a note is filed (or set aside with a yes) and any reply is sent, call
-   `set_status` with `done`. Only for notes you handled. Show the list first.
+   conversation. Pick the status honestly: a question back to them → `answered`; we'll do it but
+   haven't yet → `planned`; nothing more needed → `done`; we won't do it (say why in the reply) →
+   `declined`; something still owed to them → leave `open`. **Don't say a change is made until it is
+   live on the site.** A push is not a publish on every host: a site built in AI Studio or hosted
+   in Go High Level may need publishing first. Ask the person "is this live?"; if not, reply
+   `planned` ("we've made the change and it will be on your site shortly") and come back. When a
+   change is live, give the page link on its own line in the reply ("See it: https://...").
+6. **Mark done.** After a note is filed (or set aside with a yes), any reply is sent and the change
+   is live, call `set_status` with `done`. Only for notes you handled. Show the list first.
 7. **Follow-up questions.** Follow the connector's outbox guide (`get_guide outbox`): check
    `list_questions` first, draft in chat in plain language, and call `create_question` for each one
    only after a yes. Without the connector, give the person the final wording to add in the

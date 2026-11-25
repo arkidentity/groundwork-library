@@ -159,7 +159,7 @@ get a yes.
 
 ## Files this edition leaves out
 
-The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-project/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.24.0/skills/groundwork-project:
+The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-project/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.25.0/skills/groundwork-project:
 
 - `scripts/resolve-library.mjs`
 - `scripts/template-diff.mjs`

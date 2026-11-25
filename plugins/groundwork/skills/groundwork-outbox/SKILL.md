@@ -1,6 +1,6 @@
 ---
 name: groundwork-outbox
-description: Start onboarding a new messaging/marketing client, or prepare what goes out to a Groundwork client — read the client's project repo (open questions, recent logs, specs, shared pages), work out what only the client can tell us, and draft it as topics and items in this workspace repo's outbox/ for review; then publish approved drafts to the client's Workspace. Use in a *-workspace repo (or any repo with groundwork.yml) when someone says "start onboarding", "onboard [client]", "prepare the outbox", "what should we ask [client]", "draft questions for [client]", "get [client]'s workspace ready", or "publish the outbox". Also use in any repo linked to a Groundwork project (it has a `groundwork/` folder of notes) when someone says "make a Groundwork page", "make a branded page for [client]", or "put this on [client]'s workspace".
+description: Start onboarding a new messaging/marketing client, or prepare what goes out to a Groundwork client — read the client's project repo (open questions, recent logs, specs, shared pages), work out what only the client can tell us, and draft it as topics and items in this workspace repo's outbox/ for review; then publish approved drafts to the client's Workspace. Use in a *-workspace repo (or any repo with groundwork.yml) when someone says "start onboarding", "onboard [client]", "prepare the outbox", "what should we ask [client]", "draft questions for [client]", "get [client]'s workspace ready", or "publish the outbox". Also use in any repo linked to a Groundwork project (it has a `groundwork/` folder of notes) when someone says "make a Groundwork page", "make a branded page for [client]", "make a how-to page", "put this on [client]'s workspace", or "add a question to the page".
 ---
 
 # Groundwork Outbox
@@ -75,8 +75,9 @@ for these projects yet; say so if asked).
    - `index.html`: a full page (`<!doctype html>`, charset, viewport, `<title>`).
    - `deliverable.yml`: `title:` and `audience: all` (or `team`: only the team sees it). Optional:
      `version:`, `updated: YYYY-MM-DD`, `blurb:` (one line for its card on Home), `order:`,
-     `hidden: true`. Public link: `share: { code: <12+ random letters>, on: true }` (the app's
-     Share switch doesn't reach repo pages yet).
+     `hidden: true`, and `asks:` (questions as markers on the page; see "What a page can do").
+     Public link: `share: { code: <12+ random letters>, on: true }` (the app's Share switch doesn't
+     reach repo pages yet).
    - Images next to it. Never write anything else under `groundwork/`: the rest is Groundwork's.
 2. **Brand first.** Look for `groundwork/pages/_shared/brand.css`. If it's missing, find the brand
    with the person: the client's live website (read its colors and fonts), a brand guide, logo
@@ -89,6 +90,59 @@ for these projects yet; say so if asked).
    (security, money, people) exactly as for any other client material.
 5. **Publish:** commit and push. It shows on the project's Home within about 30 seconds. Tell the
    person where to look, and that the client sees it if `audience: all`.
+
+
+## What a page can do (read before building one)
+
+A page is plain HTML, but it runs in a sandbox: **no cookies, no storage, no access to Groundwork,
+no way to send anything to the team on its own.** So there are two kinds of interactivity, and they
+are very different. Pick on purpose and tell the person which one a part of the page is.
+
+**1. Only the reader sees it (nothing reaches us).** Works with plain HTML, CSS and a little script.
+- `<details>` / `<summary>` lists: a how-to with one tap-to-open step each, so a long process reads as
+  a short list. Put the who (`Alex`, `Sam`, `You`) in each summary and the clicks inside.
+- Tabs, toggles, "show the plan", "tap for the clicks".
+- A highlighted choice (a card marked as the recommended one) to *show* what we suggest.
+- Checkboxes work only while the page is open: **nothing is saved** (no storage in the sandbox), so
+  don't use them as a to-do the reader will come back to.
+
+**2. Reaches the team: `asks:` in `deliverable.yml`.** The only way a page collects an answer.
+```yaml
+asks:
+  - id: site-hosting            # unique on this page, lowercase and dashes
+    section: One thing to tell us   # the data-section (or data-note) on the page where its marker sits
+    prompt: Does this site go live from AI Studio or Go High Level?   # one question, 20 words or fewer
+    kind: confirm               # confirm = "Sounds right?" one tap; omit = a note, typed or spoken
+    for: Alex                   # optional: only this person (name, email or a list) sees it
+```
+- A marker shows on that section. Tapping it opens the answer box right there; after an answer a
+  "Next question" button leads on. Answers arrive as notes titled "Answer on <page>: <question>",
+  so the inbox flow handles them like any note. Each person's phone remembers what they answered.
+- `kind: confirm` is for something we plan or assume ("Edit in Claude Code from here on. Sounds
+  right?"). Use it for most asks: one tap beats a paragraph.
+- **There is no "pick A or B" ask yet.** For a real choice today, show both options on the page and
+  ask one note-style question ("Which do you want, A or B, and why?"). Do not invent `options:` or
+  `kind: choice`: the app ignores them. If someone asks for tap-to-pick, say it needs an app change
+  and note it for the team.
+- Every `section:` must match a `data-section` on the page, or the marker has nowhere to sit.
+- Run the **ask check** (step 4b) on every ask.
+
+## Building a good page
+
+- **One job per page**, shown not explained. A reader should know in five seconds who it's for and
+  what we want from them (`.eyebrow`, `h1`, one-line `.lede`, then "who it's for and the ask").
+- **Order for a how-to:** the picture first (a short chain of boxes: who does what, left to right),
+  then the steps as collapsible lists with who does each one, then the one thing we need from them.
+- **Cut text, then cut again.** Steps are short lines a person can act on. Long reasoning goes in a
+  closed "The full plan" `<details>` at the bottom for people (or an AI) who want it.
+- **Say what's not built or not checked.** If a step wasn't tested or depends on something unknown,
+  the page says so in one line.
+- **No names of other clients, people or private money in a page** unless this client is the
+  audience and the project's rules allow it.
+- **Mobile first:** works at phone width, 16px gutters, tap targets at least 44px.
+- **Brand:** link `/deliverable.css`, then the client's brand; use the tokens, not raw colors.
+- **Check it:** open it signed in as the client would see it (preview, or after push) and tap every
+  ask and every `<details>` before saying it's done.
 
 ## Setup
 

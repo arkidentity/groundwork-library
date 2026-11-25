@@ -1,2 +1,12 @@
 title: [Page title]
 audience: all   # or team: only our team sees it
+# version: v1
+# updated: 2026-01-01
+# blurb: One line for this page's card on Home.
+# Questions as markers on the page. Each section: must match a data-section on the page.
+# asks:
+#   - id: first-question
+#     section: First section
+#     prompt: One question, 20 words or fewer?
+#     kind: confirm      # confirm = one tap "Sounds right?"; leave out for a typed or spoken note
+#     for: Alex          # optional: only this person sees it
