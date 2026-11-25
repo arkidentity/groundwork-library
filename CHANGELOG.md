@@ -5,6 +5,15 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.26.0 (2026-11-24)
+- **New core skill `groundwork-site`: put the Note button on a client's website, no terminal.** Add the
+  client, add the script tag (AI Studio, Lovable, Bolt, Go High Level, WordPress, Squarespace, Wix or
+  Claude), **Check this site**, connect the repo, invite the client, test note, then get a developer
+  working (plugin zip, organization-wide connector, GitHub Desktop, "Work through the new Groundwork
+  notes"). Includes the check that a builder keeps a repo push before a client is invited.
+- `groundwork-setup` now says up front it is the file-based workspace route and points to
+  `groundwork-site` for the common one. `START.md` names seven skills.
+
 ## 0.25.0 (2026-11-24)
 - **`groundwork-outbox`: "What a page can do" and "Building a good page."** Teaches the two kinds of
   page interactivity: reader-only (collapsible step lists, tabs; nothing saved, nothing reaches the

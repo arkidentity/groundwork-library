@@ -305,7 +305,7 @@ to the client. Then finish here:
 
 ## Files this edition leaves out
 
-The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-outbox/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.25.0/skills/groundwork-outbox:
+The directory edition carries text only. In a workspace repo, use its own copy under `.claude/skills/groundwork-outbox/`; otherwise read these from https://github.com/arkidentity/groundwork-library/tree/v0.26.0/skills/groundwork-outbox:
 
 - `deliverable-starter/_shared/brand.css`
 - `deliverable-starter/page/index.html`

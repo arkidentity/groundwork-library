@@ -5,6 +5,11 @@ description: Set up Groundwork from scratch for a new organization (a church, mi
 
 # Groundwork Setup
 
+> **Which setup?** This skill starts a **file-based workspace repo** (`groundwork.yml`, questions and
+> pages published from `outbox/`): the older, advanced route, run from a clone of this library. For an
+> agency adding a client's **website** with the Note button on groundwork.chat (**New client**), use
+> **`groundwork-site`** instead: no repo scaffolding, no terminal.
+
 Walks someone new through getting Groundwork running for their organization. Go one step at a
 time: explain the step in a sentence, do it (or tell them exactly what to click), confirm it
 worked, then move on. Assume they know Claude, not necessarily git. Plain words, no jargon.
