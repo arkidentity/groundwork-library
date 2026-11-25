@@ -5,6 +5,10 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.28.1 (2026-11-25)
+- **Fixes for Windows.** `template-diff.mjs` (groundwork-project) printed backslash paths and compared files with CRLF line endings, so its report was wrong on a Windows checkout. It now uses forward slashes and ignores line endings. The validator and its tests also read files as LF, so `npm test` passes on Windows (it already passed on Linux). No change to templates or the contract.
+- `START.md`: troubleshooting for a project missing from Claude, the connector signing in as the wrong email, note status living in Groundwork, and the Note button after sign-in.
+
 ## 0.28.0 (2026-11-25)
 - **A thin plugin; the workflows move to the connector.** The Claude plugin (`groundwork.zip` and the
   directory edition) now ships two skills: `groundwork-guides` (a short pointer: it tells Claude to
