@@ -40,7 +40,7 @@ If not, ask which they use, then go to that section:
    - Type the **6-digit code** from the email **on that same page** (it lasts 10 minutes).
    - Click **Allow**. If they're already signed in to groundwork.chat in that browser, it goes
      straight to Allow.
-7. Back in Claude, the connector shows **Disconnect** and six tools. Go to section 2.
+7. Back in Claude, the connector shows **Disconnect** and its tools. Go to section 2.
 
 ## 2. Tool permissions (the screen after connecting)
 

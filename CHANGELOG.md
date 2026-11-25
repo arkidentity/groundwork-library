@@ -5,6 +5,21 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.28.0 (2026-11-25)
+- **A thin plugin; the workflows move to the connector.** The Claude plugin (`groundwork.zip` and the
+  directory edition) now ships two skills: `groundwork-guides` (a short pointer: it tells Claude to
+  fetch the current guide for the job, with `get_guide`) and `groundwork-connect` (getting connected).
+  The workflows live in Groundwork's connector as guides (`inbox`, `replies`, `outbox`, `pages`,
+  `site-setup`, `repo-work`, `brand`, `whats-waiting`), plus tools (`get_workspace`, `check_site`,
+  `get_page_starter`) and prompts (`make_page`, `setup_site`), and are shown to the team at
+  groundwork.chat/guides. They update on the server, so a new or changed workflow needs no plugin update.
+- `plugin_skills:` in `library.yml` names what the plugin ships. The other core skills
+  (`groundwork-inbox`, `-outbox`, `-project`, `-brand-capture`, `shared-repo-sync`) are unchanged and are
+  still synced into file-based workspace repos by `sync-skills.mjs`.
+- `groundwork-site` (0.26.0) is removed: its content is the connector's `site-setup` guide.
+- Upgrading from 0.27.0 or earlier: upload the new `groundwork.zip` once. Older fat skills keep working
+  but tell Claude to follow the connector's guide when it disagrees.
+
 ## 0.27.0 (2026-11-25)
 - **`groundwork-outbox`: pick-one and ranking asks.** `kind: choice` and `kind: rank`, each with
   `options:` (2 to 6), in a page's `asks:`. Choice: the reader taps one and Send; the answer arrives

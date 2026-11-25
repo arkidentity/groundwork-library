@@ -27,15 +27,18 @@ const desc = (skill) => {
 }
 const short = (s) => (s.length > 200 ? s.slice(0, s.lastIndexOf(' ', 197)) + '…' : s)
 
-const core = lib.skills.filter((s) => s.core).map((s) => s.name)
+// The plugin ships `plugin_skills` when the library names them (a thin plugin: the workflows are
+// served by the connector); otherwise every core skill. Core skills are still synced into repos.
+const core = Array.isArray(lib.plugin_skills) ? lib.plugin_skills : lib.skills.filter((s) => s.core).map((s) => s.name)
 const optional = lib.skills.filter((s) => !s.core && !SETUP_ONLY.has(s.name)).map((s) => s.name)
+const onlyForRepos = new Set(lib.skills.filter((s) => s.core).map((s) => s.name).filter((n) => !core.includes(n)))
 
 const author = { name: 'Groundwork', url: 'https://groundwork.chat' }
 const plugins = [
   {
     name: 'groundwork',
     skills: core,
-    description: 'Core Groundwork skills: connect Claude to Groundwork, file client notes (inbox), prepare questions and branded pages (outbox), put the Note button on a client site, start projects, capture a client brand, and keep the shared repo in sync.',
+    description: 'Work in Groundwork with Claude: connect the connector, then process client notes, draft replies and questions, make branded pages, put the Note button on a client site and capture a client brand, by following Groundwork\'s current guides.',
   },
   ...optional.map((name) => ({ name, skills: [name], description: short(desc(name)) })),
   // The directory edition (Anthropic's plugin directory): text-only skills, since an organization
@@ -46,7 +49,7 @@ const plugins = [
     displayName: 'Groundwork Chat',
     directory: true,
     skills: core.filter((s) => s !== 'shared-repo-sync'),
-    description: 'Work with Groundwork (groundwork.chat) in Claude: connect it, process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, start projects from templates, and capture a client brand.',
+    description: 'Work with Groundwork (groundwork.chat) in Claude: connect it, then process the notes clients and teammates leave on live sites, draft replies and next questions for your yes, make branded pages and capture a client brand, by following Groundwork\'s current guides.',
   },
 ]
 const ALLOWED = /\.(md|txt|json|ya?ml|png|jpe?g|gif|webp)$/i

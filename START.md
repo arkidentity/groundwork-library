@@ -86,8 +86,9 @@ computer; never paste it into a file or a repo.
 ## 4. Check it works
 
 Start a **new** session in the Code tab and ask:
-1. *"List your groundwork skills."* Claude should name seven: groundwork-connect, groundwork-inbox, groundwork-outbox, groundwork-site,
-   groundwork-project, groundwork-brand-capture and shared-repo-sync.
+1. *"List your groundwork skills."* Claude should name two: groundwork-guides and groundwork-connect.
+   The workflows themselves come from the connector's guides (groundwork.chat → Guides), so there's
+   nothing else to install and they stay current.
 2. In your project's repo: *"Make a Groundwork page about [something small]."* After you push, it
    should show on the project's Home in groundwork.chat within about a minute.
 
