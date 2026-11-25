@@ -20,6 +20,13 @@ templates:
     description: Brand brief and voice capture without drafting. The upsell to a website.
     tags: [messaging, brand-brief, onboarding]
     pairs_with: [church-website]
+  - name: church-services
+    path: templates/church-services
+    version: 0.2.0
+    title: Church services kickoff
+    description: Small onboarding for automations, newsletters and follow-up. Three questions, one call that sorts tasks into Automate, Delegate, Own or Drop, and a one-page plan.
+    tags: [church, onboarding, automation]
+    pairs_with: [church-website, messaging]
   - name: blank
     path: templates/blank
     version: 0.1.0

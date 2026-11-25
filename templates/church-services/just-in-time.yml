@@ -1,0 +1,18 @@
+# Just-in-time questions (team only). Never sent up front.
+# Ask ONE, only when a build in the plan needs it, as its own item in that build's conversation.
+# Most answers come from the kickoff call; check notes/ and the Church Library first.
+tools:
+  when: before any automation that touches a tool
+  ask: "Which tool do you use for {{job}}, and who's the admin? Please add us as a user, no passwords."
+voice:
+  when: before the first draft in the pastor's voice
+  ask: "Which two or three sermons sound most like you? Any words you never want to hear from us?"
+ai_policy:
+  when: before the first automation that writes to people
+  ask: "How does your staff use AI today, and what should never be automated here?"
+guests:
+  when: starting guest follow-up
+  ask: "Walk us through what happens after someone fills out a connect card. Where does it break down?"
+rhythm:
+  when: starting any weekly content (email, podcast, Daily DNA notes)
+  ask: "What day does it go out, and what's the latest a draft can reach you for approval?"

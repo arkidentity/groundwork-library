@@ -1,0 +1,43 @@
+name: church-services
+version: 0.2.0
+title: Church services kickoff
+description: >
+  Onboarding for a church we serve with automations, newsletters, sermon content and follow-up.
+  Kept small on purpose: three written questions, one kickoff call that sorts every task into
+  Automate, Delegate, Own or Drop, then a one-page plan. Everything else is asked one question at a
+  time, only when a build needs it.
+vars:
+  church: the church's short name as people say it (e.g. "Hope")
+  from: who on the team is asking (usually the person who has the relationship)
+  date: today
+project:
+  slug: getting-started
+  title: Getting started
+  summary: Three short questions, one call, and a one-page plan.
+  audience: all
+pairs_with:
+  - template: messaging
+    note: >
+      Messaging's x-001 asks for existing material; if it's answered, skip x-001 here.
+  - template: church-website
+    note: >
+      No overlap in round 1. The website's tools questions answer the `tools` entry in just-in-time.yml.
+items:
+  q-team: round 1 · who runs it, who approves
+  q-drains: round 1 · what drains you (the call goes deeper)
+  x-001: round 1 · sermon links and recent newsletters
+rules:
+  round_size: 3
+  prompts_per_item: 3
+  after_round_1: no more rounds; use just-in-time.yml, one question at a time
+generate:
+  - "church/task-audit.md: every task from the call, in Automate / Delegate / Own / Drop"
+  - "after the call: one review item 'Your plan' (one page: the four buckets and the first one or two builds)"
+  - "church/: the Church Library scaffold (profile, sermons, systems, rhythms, people as roles only)"
+team_files:
+  - from: kickoff-call-guide.md
+    to: null
+  - from: just-in-time.yml
+    to: null
+  - from: ai-policy-outline.md
+    to: null

@@ -10,6 +10,7 @@ the variables, renumbers ids, and waits for a yes before anything reaches the cl
 |---|---|---|---|
 | [`church-website/`](church-website/) | Website | Information discovery for a church site: facts, flow, priorities. Also has the conversion strategy and a question bank. | Always, with a website job |
 | [`messaging/`](messaging/) | Your message | Brand brief and voice: customer, problem, plan, proof, words. | The upsell |
+| [`church-services/`](church-services/) | Getting started | Small onboarding: three questions, one call (Automate, Delegate, Own, Drop), a one-page plan. | With any services package |
 | [`blank/`](blank/) | (yours) | An empty project with one conversation, for anything that has no template yet. | n/a |
 
 ## Anatomy of a template
