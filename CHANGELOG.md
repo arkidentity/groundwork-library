@@ -5,6 +5,9 @@ optional fields. **Major:** anything that changes ids, file layout, or the contr
 workspace needs. Templates only affect projects started after a release; existing projects are
 updated on purpose (see README, "Updating an old project").
 
+## 0.28.4 (2026-11-25)
+- **The tools and prompts 0.28.0 named now exist.** Connector guides 0.7.0 add the read-only tools `get_workspace` (a project's sites, team, client people, repo and pages), `check_site` (is the Note script on the live site) and `get_page_starter` (starting files for a page, and the folder they go in), and the prompts `make_page` and `setup_site`. `groundwork-guides` mentions them again. The `pages` guide is v2: it names both folders (`groundwork/pages/<slug>/` for projects whose notes live in Groundwork, `workspace/deliverables/<slug>/` for file-based workspaces).
+
 ## 0.28.3 (2026-11-25)
 - **The connector now serves the guides 0.28.0 promised.** Connector guides 0.6.0 add `site-setup` (the Note button on a client site, and why it might not show), `repo-work` (changes from notes while a project repo is open) and `brand` (capture a client brand from their website), next to `pages` (0.5.0). `groundwork-guides` lists them again. The `get_workspace`, `check_site` and `get_page_starter` tools and the `make_page` / `setup_site` prompts named in 0.28.0 still do not exist, and the skill does not mention them.
 

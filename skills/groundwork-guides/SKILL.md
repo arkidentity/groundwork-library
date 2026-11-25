@@ -30,8 +30,13 @@ Call `get_guide` with the topic:
 | Capture a client's brand from their website for their pages | `brand` |
 | A quick read-only look at what's waiting | `whats-waiting` |
 
-The connector also offers ready-made starts (prompts): `process_inbox`, `whats_waiting`. Starting a
-project from a template: `list_templates`, then `get_template`. Helpful tool: `list_questions`.
+The connector also offers ready-made starts (prompts): `process_inbox`, `whats_waiting`, `make_page`,
+`setup_site`. Starting a project from a template: `list_templates`, then `get_template`.
+
+Helpful tools: `get_workspace` (a project's name, client group, sites, team, client people, repo and
+pages), `check_site` (is the Note script on the live site), `get_page_starter` (starting files for a
+page, and the folder they go in), `list_questions`. If one of these isn't available to you, the
+person's connector needs refreshing (Claude's connector settings); carry on with the guide meanwhile.
 
 The connector can't add a website, place the script or write files. Those guides walk the person
 through the app and their repo. In a project repo that has its own `.claude/skills/groundwork-*`

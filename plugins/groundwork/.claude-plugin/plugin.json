@@ -1,7 +1,7 @@
 {
   "name": "groundwork",
   "displayName": "Groundwork",
-  "version": "0.28.3",
+  "version": "0.28.4",
   "description": "Work in Groundwork with Claude: connect the connector, then process client notes, draft replies and questions, make branded pages, put the Note button on a client site and capture a client brand, by following Groundwork's current guides.",
   "author": {
     "name": "Groundwork",
