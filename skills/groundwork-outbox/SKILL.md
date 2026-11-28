@@ -44,7 +44,7 @@ call. The `outbox/` folder flow below is for workspace repos.
      deliverables" in the Groundwork repo contract). It opens beside the conversation on a
      computer and follows the workspace login, so it needs no sharing check. A client brand goes
      in `workspace/deliverables/_shared/brand.css`. Older Claude artifact links still work but
-     open in a new tab; move them over when you touch them.
+     open in a new tab; move them over when you touch them (a tool: see "Artifact to page").
    - **Brand first.** Before making a client page, check `groundwork.yml` for a `theme:`. If it's
      missing, say so and stop to identify their branding with the person you're working with:
      their website, a brand guide or logo files, their colors and fonts. Ask, don't guess. Add it
@@ -298,6 +298,36 @@ Report the result with the stale check: "Sharing: all N pages open" or the list 
    linked title, one plain line on what it is, "Draft, <Mon D>". If a page was replaced, update its
    row instead of adding one. Create the file if it doesn't exist.
 5. Say what's live, and what's still waiting in `outbox/` for a later wave.
+
+## Artifact to page (a working tool the client needs to use)
+
+Groundwork can't show a Claude artifact inside the app: claude.ai refuses to be framed by other
+sites. When the thing is a **tool to use** (a calculator, a planner, a generator), not a page to
+react to, copy its HTML into a hosted page. For anything the client should comment on, build a
+normal brand page instead: notes attach to a page's own sections, and an artifact copied in is one
+block.
+
+1. **Read the artifact** with the Artifact tool: `action: "read"` with `path: "index.html"`. It saves
+   the file locally and says where. (Only artifacts the person owns, or can edit, come back as HTML.)
+2. **Copy it in** with the script next to this skill:
+   ```bash
+   node .claude/skills/groundwork-outbox/scripts/artifact-to-page.mjs <saved index.html> workspace/deliverables/<slug> --source <artifact url> [--title "Name"]
+   ```
+   It checks the page will work in Groundwork's sandbox and writes `index.html` and
+   `deliverable.yml`. A new page starts as `audience: team`.
+3. **Read what it says.** A *blocker* (the page uses `window.claude`: shared data, "ask Claude",
+   viewer identity) means it cannot work here: stop, tell the person, and either rebuild that part
+   without it or keep the artifact link. A *warning* (browser storage, outside files, no viewport
+   tag) means open the page and try it before saying it works. Pages run with no storage, so
+   anything the tool saves between visits will not stick.
+4. **Preview** it (step 5 of the workflow), then change `audience:` to `all` on a yes and link it as
+   `deliverable:<slug>`. Put the ask for feedback in the item, not inside the tool.
+5. **Refresh** after the artifact is republished: run steps 1 and 2 again with the same slug. Only
+   `index.html`, `pulled:` and `updated:` change; title, asks, version and sharing stay. If the
+   change matters to the client, bump `version:` and add an update to the items that link it.
+
+The copy is a snapshot. Say so in the commit (`workspace: copy <title> artifact as a page`) and
+keep the `source:` line so the next person knows where to refresh from.
 
 ## Start onboarding (new messaging or marketing clients)
 
